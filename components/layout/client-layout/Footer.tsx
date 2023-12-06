@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
+import { IoLocationOutline } from "react-icons/io5";
 
 const Footer = () => {
   const { ContactData, Branches } = useData();
@@ -18,7 +19,7 @@ const Footer = () => {
       setIsOption(idx);
     }
   };
-
+  console.log(Branches);
   return (
     <div>
       <div className="p:w-auto p:mx-2 d:w-[1400px] d:mx-auto grid p:grid-cols-1   d:grid-cols-4 gap-3 py-14">
@@ -39,7 +40,7 @@ const Footer = () => {
               <Link
                 href={`/bai-viet/${item.value}`}
                 key={idx}
-                className="hover:text-orange-500 duration-300"
+                className="hover:text-mainblue duration-300"
               >
                 {item.label}
               </Link>
@@ -50,22 +51,23 @@ const Footer = () => {
           <h2 className="uppercase font-normal text-[18px]">Chi nhánh</h2>
           <div className="flex flex-col mt-3">
             {Branches.map((items: any, idx: number) => (
-              <div key={idx} className="group">
-                <h2 className="py-2 border-b w-full font-normal cursor-pointer">
-                  {items.name}
-                </h2>
-                <div className="text-[14px]  flex-col gap-1 py-2 p:flex d:hidden group-hover:flex">
-                  <p>
-                    {" "}
-                    <span className="underline">Địa chỉ:</span>{" "}
-                    <>{items.address}</>
-                  </p>
-                  <p>
-                    <span className="underline">SĐT:</span> <>{items.hotline}</>
-                  </p>
+              <div
+                key={idx}
+                className="border-x border-t duration-300 cursor-pointer hover:text-mainblue "
+              >
+                <div className="p-2 flex start-0 gap-2">
+                  <div className="text-[24px] text-mainblue">
+                    <IoLocationOutline />
+                  </div>
+                  <div>{items.address}</div>
                 </div>
               </div>
             ))}
+            <div className="bg-gray-100 hover:bg-gray-200 duration-300">
+              <div className="px-2 py-4 text-center font-normal text-mainblue  duration-300 cursor-pointer hover:text-">
+                Xem tất cả cửa hàng Hải Nam
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex flex-col">
@@ -84,6 +86,9 @@ const Footer = () => {
             ></iframe>
           </div>
         </div>
+      </div>
+      <div className="p:w-auto p:mx-2 d:w-[1400px] d:mx-auto py-2 font-normal">
+        Hotline: <span className="text-redPrimmary">{ContactData.phone}</span>
       </div>
     </div>
   );

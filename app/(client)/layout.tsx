@@ -1,8 +1,9 @@
+import Copyright from "@components/layout/client-layout/Copyright";
 import Footer from "@components/layout/client-layout/Footer";
 import Header from "@components/layout/client-layout/Header";
 import Hotline from "@components/layout/client-layout/Hotline";
-import TopFooter from "@components/layout/client-layout/Items/TopFooter";
 import OnTop from "@components/layout/client-layout/OnTop";
+import TopFooter from "@components/layout/client-layout/TopFooter";
 import React from "react";
 
 type ClientLayoutProps = {
@@ -13,11 +14,13 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
   return (
     <div className="font-LexendDeca font-extralight">
       <Header />
-      <div className="mt-[170px]">{children}</div>
-      <OnTop />
-      <Hotline />
+      <div className="">{children}</div>
+      {/* <OnTop />
+      <Hotline /> */}
+
       <TopFooter />
       <Footer />
+      <Copyright />
     </div>
   );
 };

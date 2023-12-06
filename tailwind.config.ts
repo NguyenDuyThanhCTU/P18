@@ -37,7 +37,8 @@ const config: Config = {
         maingreen: "#1e7147",
         mainyellow: "#ffd205",
         mainorange: "#f3b41e",
-        mainblue: "#0F00B6",
+        mainblue: "#0072ba",
+        mainNormalBlue: "#004769",
       },
 
       // custom

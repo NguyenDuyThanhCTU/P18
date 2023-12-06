@@ -254,16 +254,25 @@ export const SocialMediaCustom = [
 
 export const HeaderItems = [
   {
-    label: "Trang chủ",
-    value: "",
-  },
-  {
-    label: "Sản phẩm",
-    value: "san-pham",
-  },
-  {
     label: "Giới thiệu",
     value: "gioi-thieu",
+  },
+
+  {
+    label: "Camera Trọn bộ",
+    value: "camera-tron-bo",
+  },
+  {
+    label: "Phụ Kiện Camera",
+    value: "phu-kien-camera",
+  },
+  {
+    label: "Thiết Bị Thông Minh",
+    value: "thiet-bi-thong-minh",
+  },
+  {
+    label: "Dự Án",
+    value: "du-an",
   },
   {
     label: "Tin tức",
