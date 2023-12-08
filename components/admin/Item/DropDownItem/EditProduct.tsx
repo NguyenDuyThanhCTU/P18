@@ -20,23 +20,25 @@ const AddProduct = ({}) => {
   const [imageUrl, setImageUrl] = useState<string | undefined>();
   const [Title, setTitle] = useState<any>();
   const [titleUrl, setTitleUrl] = useState<any>();
-  const [Discount, setDiscount] = useState<any>();
+
+  const [Price, setPrice] = useState<any>();
   const [Content, setContent] = useState<string | undefined>();
   const [describe, setDescribe] = useState("");
   const [isType, setIsType] = useState<any>();
-  const [isParent, setIsParent] = useState("Hộp quà-giỏ quà");
+  const [isParent, setIsParent] = useState("");
   const [isChildren, setIsChildren] = useState<any>();
   const [typeUrl, setTypeUrl] = useState<string | undefined>();
   const [parentUrl, setParentUrl] = useState<string | undefined>();
   const [childrenUrl, setChildrenUrl] = useState<string | undefined>();
   const [ListSubImage, setListSubImage] = useState<any>([]);
   const [value, setValue] = useState();
-  const { setDropDown, setIsRefetch } = useStateProvider();
+  const { setIsRefetch } = useStateProvider();
   const [open, setOpen] = useState(false);
   const [openDescription, setOpenDescription] = useState(false);
   const [ProductData, setProductData] = useState<any>();
   const { Option } = Select;
   const { productTypes, Products, UpdateId } = useData();
+  const [Discount, setDiscount] = useState<any>();
   const [newPrice, setNewPrice] = useState<any>();
   const initial1 =
     "<p>Chất liệu: </p> <br/> <p>Màu sắc: </p> <br/> <p>Size: </p> <br/> <p>Chiều dài: </p> <br/> <p>Chiều rộng: </p> <br/> <p>Chiều cao: </p> <br/> <p>Trọng lượng: </p> <br/> <p>Thương hiệu: </p> <br/> <p>Xuất xứ: </p> <br/> <p>Chất liệu";
@@ -48,6 +50,15 @@ const AddProduct = ({}) => {
       setProductData(sort[0]);
     }
   }, [UpdateId, Products]);
+
+  useEffect(() => {
+    const removeSpace = ProductData?.price?.replace(/\s/g, "");
+    const price = parseInt(removeSpace);
+
+    if (price) {
+      setNewPrice(price - (price * Discount) / 100);
+    }
+  }, [Discount, Price]);
 
   useEffect(() => {
     const handleChange = () => {
@@ -74,7 +85,7 @@ const AddProduct = ({}) => {
 
   const handleDiscard = () => {
     setTitle("");
-
+    setPrice("");
     setContent("");
     setDescribe("");
     setIsType("");
@@ -86,73 +97,25 @@ const AddProduct = ({}) => {
     setListSubImage([]);
     setImageUrl("");
   };
-  const headers = ["Size", "1mx2m", "1m2x2m", "1m4x2m", "1m6x2m", "1m8x2m"];
-
-  const formattedTable = ProductData?.price.map((rowData: any, index: any) => {
-    if (index === 0) {
-      return headers;
-    } else {
-      return headers.map((header) => rowData[header] || "");
-    }
-  });
-
-  useEffect(() => {
-    //discount formattedTable with Discount value then set newPrice
-    const applyDiscount = (priceArray: any, discountPercentage: any) => {
-      // Bỏ qua phần tử đầu tiên vì đó là headers
-      for (let i = 1; i < priceArray?.length; i++) {
-        for (let j = 1; j < priceArray[i]?.length; j++) {
-          if (priceArray[i][j] !== "") {
-            const originalPrice = parseFloat(
-              priceArray[i][j]?.replace(/\s+/g, "").replace(",", ".")
-            );
-            const discountedPrice =
-              originalPrice * (1 - discountPercentage / 100);
-            // Làm tròn giảm giá đến 2 chữ số thập
-            // thêm dấu phẩy ngăn cách hàng nghìn
-            priceArray[i][j] = discountedPrice
-              .toFixed(2)
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            // priceArray[i][j] = discountedPrice;
-          }
-        }
-      }
-      return priceArray;
-    };
-    const discountedPrices = applyDiscount(formattedTable, Discount);
-    setNewPrice(discountedPrices);
-  }, [Discount]);
-
-  const convertedData = newPrice?.map((row: any) => {
-    const obj: any = {};
-    newPrice[0]?.forEach((header: any, index: any) => {
-      if (header === "Size") {
-        obj[header] = row[0];
-      } else {
-        obj[header] = row[index];
-      }
-    });
-    return obj;
-  });
 
   const HandleSubmit = () => {
     const data: any = {
       title: Title,
       content: Content,
       describe: describe,
+      price: Price,
       image: imageUrl,
       type: isType,
       typeUrl: typeUrl,
       parent: isParent,
       parentUrl: parentUrl,
-      state: "Còn hàng",
+      state: value,
       url: titleUrl,
-      discount: Discount,
-      newPrice: convertedData,
-
-      access: Math.floor(Math.random() * (10000 - 100 + 1)) + 100,
       subimage: ListSubImage,
+      children: isChildren,
+      childrenUrl: childrenUrl,
+      discount: Discount,
+      newPrice: newPrice,
     };
 
     for (let key in data) {
@@ -240,61 +203,25 @@ const AddProduct = ({}) => {
               </div>
             </div>
 
-            <div>
-              <div>
-                Bảng giá:
-                <div className="mt-2">
-                  <div className="overflow-x-auto ">
-                    <table className="min-w-full">
-                      <tbody>
-                        {formattedTable?.map((row: any, rowIndex: any) => (
-                          <tr key={`row-${rowIndex}`}>
-                            {row.map((cell: any, colIndex: any) => (
-                              <td
-                                key={`cell-${rowIndex}-${colIndex}`}
-                                className="border px-4 py-2 w-max truncate"
-                              >
-                                {cell}
-                              </td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+            <div className="flex flex-col w-full">
+              <div className="mt-5">
+                <p>Tên sản phẩn: {ProductData?.title}</p>
+                <p>Giá sản phẩm: {ProductData?.price} VNĐ</p>
+
+                <p>Loại sản phẩm: {ProductData?.parent}</p>
+
+                <p>Trạng thái: {ProductData?.state}</p>
+                <div className="mt-3">
+                  <Input
+                    PlaceHolder={ProductData?.discount}
+                    text="Giảm giá (%)"
+                    Value={Discount}
+                    setValue={setDiscount}
+                    Input={true}
+                  />
                 </div>
-              </div>
-              <div className="mt-2">
-                <Input
-                  PlaceHolder={Discount ? Discount : ProductData?.discount}
-                  text="Giảm giá (%)"
-                  Value={Discount}
-                  setValue={setDiscount}
-                  Input={true}
-                />
-              </div>
-              <div>
-                Bảng giá giảm:
-                <div className="mt-2">
-                  <div className="overflow-x-auto ">
-                    <table className="min-w-full">
-                      <tbody>
-                        {newPrice?.map((row: any, rowIndex: any) => (
-                          <tr key={`row-${rowIndex}`}>
-                            {row.map((cell: any, colIndex: any) => (
-                              <td
-                                key={`cell-${rowIndex}-${colIndex}`}
-                                className="border px-4 py-2 w-max truncate"
-                              >
-                                {cell}
-                              </td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+
+                {Discount && <div>Giá mới: {newPrice} VNĐ</div>}
               </div>
             </div>
           </div>
@@ -311,7 +238,13 @@ const AddProduct = ({}) => {
                   Value={Title}
                   setValue={setTitle}
                 />
-
+                <Input
+                  PlaceHolder={ProductData?.price}
+                  text="Giá sản phẩm "
+                  Value={Price}
+                  setValue={setPrice}
+                  Input={true}
+                />
                 <div className="">
                   <label>Thông tin sản phẩm</label>
                   <div
@@ -352,7 +285,7 @@ const AddProduct = ({}) => {
                       ))}
                     </select>
                   </div>
-                  {/* <div className="flex flex-col gap-2 w-[190px]">
+                  <div className="flex flex-col gap-2 w-[190px]">
                     <label className="text-md font-medium ">
                       Loại bài viết
                     </label>
@@ -370,7 +303,7 @@ const AddProduct = ({}) => {
                           </Option>
                         ))}
                     </Select>
-                  </div> */}
+                  </div>
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label className="text-md font-medium ">Loại bài viết</label>

@@ -18,9 +18,9 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
       {/* <OnTop />
       <Hotline /> */}
 
-      <TopFooter />
+      {/* <TopFooter />
       <Footer />
-      <Copyright />
+      <Copyright /> */}
     </div>
   );
 };

@@ -8,15 +8,16 @@ import DisplayProduct from "../Product/DisplayProduct";
 import { TypeProductItems } from "@assets/item";
 
 const HomeContent = ({ Data }: any) => {
-  const { TradeMarkData, Slides, Videos, productTypes } = useData();
+  console.log(Data);
+  const { productTypes } = useData();
   const DrapProduct = Data.filter((product: any) => product.parent === "Drap");
   const Product1 = Data.filter((product: any) => product.parent === "Gối");
   const Product2 = Data.filter((product: any) => product.parent === "Phụ kiện");
   return (
     <div className="flex flex-col bg-white">
-      {productTypes?.map((item: any, idx: number) => {
+      {TypeProductItems?.map((item: any, idx: number) => {
         const sortProduct = Data.filter(
-          (product: any) => product.type === item.type
+          (product: any) => product.parentUrl === item.value
         );
         return (
           <div key={idx}>
@@ -24,9 +25,9 @@ const HomeContent = ({ Data }: any) => {
           </div>
         );
       })}{" "}
-      <DisplayProduct Data={DrapProduct} Topic="Drap" />
+      {/* <DisplayProduct Data={DrapProduct} Topic="Drap" />
       <DisplayProduct Data={Product1} Topic="Gối" />
-      <DisplayProduct Data={Product2} Topic="Phụ kiện" />
+      <DisplayProduct Data={Product2} Topic="Phụ kiện" /> */}
       {/* <DisplayProduct Data={saleProducts} Topic="Sản phẩm khuyến mãi" />
       <DisplayProduct Data={bestSellerProducts} Topic="Sản phẩm bán chạy" />
       <DisplayProduct Data={newProducts} Topic="Sản phẩm mới" />

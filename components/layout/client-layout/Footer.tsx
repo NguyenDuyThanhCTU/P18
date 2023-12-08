@@ -19,7 +19,6 @@ const Footer = () => {
       setIsOption(idx);
     }
   };
-  console.log(Branches);
   return (
     <div>
       <div className="p:w-auto p:mx-2 d:w-[1400px] d:mx-auto grid p:grid-cols-1   d:grid-cols-4 gap-3 py-14">

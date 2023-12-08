@@ -15,12 +15,13 @@ export const metadata: Metadata = {
 
 const HomePage = async () => {
   const Data = await getDataByTypeProps("posts", "topic", "Tin tức");
+  console.log(Data);
   const ProductData = await getAllDataProps("products");
   return (
     <div>
       <HomeSlide />
       <div className="d:w-[1400px] d:mx-auto p:w-auto p:mx-2 ">
-        {/* <HomeContent Data={ProductData} /> */}
+        <HomeContent Data={ProductData} />
         <HomeNews Data={Data} />
         <HomeVideo />
       </div>

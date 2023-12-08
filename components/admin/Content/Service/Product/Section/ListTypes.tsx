@@ -7,7 +7,6 @@ import React from "react";
 const ListType: React.FC = () => {
   const { setDropDown } = useStateProvider();
   const { productTypes } = useData();
-
   return (
     <div className="d:w-[400px] shadow-2xl bg-[#353535] p:w-auto">
       <div className="p-3">
@@ -21,7 +20,6 @@ const ListType: React.FC = () => {
                 const children = productTypes.filter(
                   (data: any) => data.parent === items.label
                 );
-
                 return (
                   <div key={idx} className="pb-4 border-b border-black">
                     <span className="text-[20px]">{items.label}</span>

@@ -227,14 +227,13 @@ const Header = () => {
                                 <div className=" flex flex-col shadow-sm  bg-white">
                                   {sort?.map((item: any, idx: number) => {
                                     const children = item?.children;
-                                    console.log(sort, children);
                                     return (
                                       <div
                                         key={idx}
                                         className="group/lv1 border-b hover:bg-gray-100 duration-300 cursor-pointer"
                                       >
                                         <div className="py-2 px-4   flex justify-between items-center gap-5 ">
-                                          <h2 className="  font-bold  ">
+                                          <h2 className="  font-normal  ">
                                             {item?.type}
                                           </h2>
                                           {children.length > 0 && (
@@ -244,15 +243,15 @@ const Header = () => {
                                           )}
                                         </div>
                                         {children.length > 0 && (
-                                          <div className="absolute top-0 left-[187px] hidden group-hover/lv1:block ">
+                                          <div className="absolute top-0 left-[184px] hidden group-hover/lv1:block ">
                                             <div className="flex flex-col bg-white ">
                                               {children.map(
                                                 (items: any, idx: number) => (
                                                   <div
-                                                    className="py-2 px-4 hover:bg-gray-100 duration-300   flex justify-between items-center gap-5 "
+                                                    className="py-2 px-4 hover:bg-  0 duration-300   flex justify-between items-center gap-5 "
                                                     key={idx}
                                                   >
-                                                    <h2 className="  font-bold w-max ">
+                                                    <h2 className="  font-normal w-max ">
                                                       {items.children}
                                                     </h2>
                                                   </div>

@@ -91,7 +91,6 @@ const UploadPost: React.FC = () => {
       // });
       const sort = Posts.filter((item: any) => item.topicUrl === topicUrl);
       if (sort) {
-        console.log(sort[0]?.id);
         setUpdateId(sort[0]?.id);
         setDropDown("add-post");
       }
