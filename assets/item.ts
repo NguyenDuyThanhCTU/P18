@@ -315,20 +315,20 @@ export const ToolsTipsSocialMediaItems = [
 
 export const TypeProductItems = [
   {
-    label: "Nệm",
-    value: "nem",
+    label: "Wifi Camera",
+    value: "wifi-camera",
   },
   {
-    label: "Drap",
-    value: "drap",
+    label: "Dual lens Camera",
+    value: "dual-lens-camera",
   },
   {
-    label: "Gối",
-    value: "goi",
+    label: "4G Camera",
+    value: "4g-camera",
   },
   {
-    label: "Phụ kiện",
-    value: "phu-kien",
+    label: "Battery Camera",
+    value: "battery-camera",
   },
 ];
 
@@ -373,21 +373,13 @@ export const TypePostItems = [
     animation: policyAnimation,
   },
   {
-    label: "Chính sách bảo mật",
-    value: "chinh-sach-bao-mat",
+    label: "Chính sách bảo hành",
+    value: "chinh-sach-bao-hanh",
     animation: securityAnimation,
   },
   {
-    label: "Thông tin nệm Việt Á",
-    value: "thong-tin-nem-viet-a",
-  },
-  {
-    label: "Chia sẽ kiến thức",
-    value: "chia-se-kien-thuc",
-  },
-  {
-    label: "Tại sao chọn nệm Việt Á",
-    value: "tai-sao-chon-nem-viet-a",
+    label: "Giới thiệu về vstarcam",
+    value: "gioi-thieu-ve-vstarcam",
   },
 ];
 

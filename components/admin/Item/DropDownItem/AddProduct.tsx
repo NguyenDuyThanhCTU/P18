@@ -304,42 +304,61 @@ const AddProduct = ({}) => {
                     ))}
                   </select>
                 </div>
-                <div className="flex flex-col gap-2 w-[190px]">
-                  <label className="text-md font-medium ">Loại bài viết</label>
-                  <Select
-                    style={{ width: "100%" }}
-                    placeholder="Chọn loại bài viết"
-                    onChange={setIsType}
-                    optionLabelProp="label"
-                  >
-                    {productTypes
-                      ?.filter((item: any) => item.parent === isParent)
-                      .map((item: any, idx: any) => (
-                        <Option key={idx} value={item.type} label={item.type}>
-                          <Space>{item.type}</Space>
-                        </Option>
-                      ))}
-                  </Select>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-md font-medium ">Mục 2:</label>
-                <select
-                  className="outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
-                  onChange={(e) => setIsParent2(e.target.value)}
-                >
-                  <option> -- Chọn mục 2 --</option>
+                {isParent && (
+                  <>
+                    {" "}
+                    <div className="flex flex-col gap-2">
+                      <label className="text-md font-medium ">Mục 2:</label>
+                      <select
+                        className="outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
+                        onChange={(e) => setIsParent2(e.target.value)}
+                      >
+                        <option> -- Chọn mục 2 --</option>
 
-                  {TypeProductItems2.map((item, idx) => (
-                    <option
-                      key={idx}
-                      className=" outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
-                      value={item.label}
-                    >
-                      {item.label}
-                    </option>
-                  ))}
-                </select>
+                        {productTypes
+                          ?.filter((item: any) => item.parent === isParent)
+                          .map((item: any, idx: number) => (
+                            <option
+                              key={idx}
+                              className=" outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
+                              value={item.type}
+                            >
+                              {item.type}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+                  </>
+                )}
+                {isParent2 && (
+                  <>
+                    <div className="flex flex-col gap-2 w-[190px]">
+                      <label className="text-md font-medium ">
+                        Loại bài viết
+                      </label>
+                      <Select
+                        style={{ width: "100%" }}
+                        placeholder="Chọn loại bài viết"
+                        onChange={setIsChildren}
+                        optionLabelProp="label"
+                      >
+                        {productTypes
+                          ?.filter((item: any) => item.type === isParent2)[0]
+                          ?.children?.map((item: any, idx: any) => {
+                            return (
+                              <Option
+                                key={idx}
+                                value={item.childrenUrl}
+                                label={item.children}
+                              >
+                                <Space>{item.children}</Space>
+                              </Option>
+                            );
+                          })}
+                      </Select>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

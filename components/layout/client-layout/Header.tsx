@@ -4,8 +4,9 @@ import { useData } from "@context/DataProviders";
 import { Drawer } from "antd";
 import Link from "next/link";
 import React, { useState } from "react";
+import { AiFillCaretRight } from "react-icons/ai";
 import { CiMail } from "react-icons/ci";
-import { FaPhoneVolume, FaSearch } from "react-icons/fa";
+import { FaAngleDown, FaPhoneVolume, FaSearch } from "react-icons/fa";
 import { IoIosMenu, IoMdTime } from "react-icons/io";
 import { IoChevronDownOutline } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
@@ -18,6 +19,19 @@ const Header = () => {
   const { ContactData, TradeMarkData, productTypes } = useData();
   const [openSearchMB, setOpenSearchMB] = useState(false);
   const [openTypeMB, setOpenTypeMB] = useState(0);
+  const [openType, setOpenType] = useState(0);
+  const [DropdownValue, setDropdownValue] = useState<any>();
+  const HandleSelectProductType = (idx: number) => {
+    if (openType === idx + 1) {
+      setOpenType(0);
+    } else {
+      setOpenType(idx + 1);
+    }
+  };
+  const HandleMouseEnter = (type: any) => {
+    const sort = productTypes?.filter((item: any) => item.parentUrl === type);
+    setDropdownValue(sort);
+  };
   return (
     <>
       <div className="p:hidden d:block">
@@ -49,90 +63,175 @@ const Header = () => {
           </div>
         </div>
         <div className="bg-white h-[96px] shadow-xl">
-          <div className="w-[1300px] mx-auto flex items-center justify-between gap-5">
-            <Link href={`/`} className="">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/target-31b09.appspot.com/o/z4946974075826_a7f354251fb7daa00a092fd804cdd655.jpg?alt=media&token=38e448e7-2887-488c-9e46-c71492d73f04"
-                alt="Logo Vstarcam"
-                className="h-[96px]"
-              />
-            </Link>
-            <div className="flex gap-5 w-max">
-              {HeaderItems.map((item: any, idx: number) => (
-                <div
-                  key={idx}
-                  className="cursor-pointer w-max font-normal text-black  hover:text-mainNormalBlue duration-300 text-[18px]"
-                >
-                  {item.label}
-                </div>
-              ))}
-            </div>
-
-            <div className=" relative">
-              <div
-                className={`${
-                  OpenSearch ? "border" : "border-none"
-                } border rounded-full border-mainblue flex items-center `}
-              >
-                <div
-                  className={`pl-4 ${
-                    OpenSearch ? "w-full " : "w-0"
-                  }  justify-between items-center grid grid-cols-7`}
-                >
-                  <input
-                    type="text"
-                    className="outline-none mr-2 col-span-6"
-                    placeholder={search ? search : "Tìm kiếm sản phẩm"}
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
+          <div className="w-[1300px] mx-auto flex flex-col">
+            <div className="flex items-center justify-between gap-5">
+              <div className=" flex flex-col">
+                <Link href={`/`} className="">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/target-31b09.appspot.com/o/z4946974075826_a7f354251fb7daa00a092fd804cdd655.jpg?alt=media&token=38e448e7-2887-488c-9e46-c71492d73f04"
+                    alt="Logo Vstarcam"
+                    className="h-[96px]"
                   />
-                  <div>
-                    <div
-                      className={`${
-                        search ? "block" : "hidden"
-                      }  bg-gray-500 text-gray-300 w-max p-1 rounded-full text-[10px] cursor-pointer `}
-                      onClick={() => setSearch("")}
-                    >
-                      <RxCross2 />
+                </Link>
+              </div>
+              <div className="flex gap-5 w-max">
+                {HeaderItems.map((item: any, idx: number) => (
+                  <div
+                    key={idx}
+                    className="cursor-pointer w-max font-normal text-black  hover:text-mainNormalBlue duration-300 text-[18px]"
+                  >
+                    {item.label}
+                  </div>
+                ))}
+              </div>
+
+              <div className=" relative">
+                <div
+                  className={`${
+                    OpenSearch ? "border" : "border-none"
+                  } border rounded-full border-mainblue flex items-center `}
+                >
+                  <div
+                    className={`pl-4 ${
+                      OpenSearch ? "w-full " : "w-0"
+                    }  justify-between items-center grid grid-cols-7`}
+                  >
+                    <input
+                      type="text"
+                      className="outline-none mr-2 col-span-6"
+                      placeholder={search ? search : "Tìm kiếm sản phẩm"}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <div>
+                      <div
+                        className={`${
+                          search ? "block" : "hidden"
+                        }  bg-gray-500 text-gray-300 w-max p-1 rounded-full text-[10px] cursor-pointer `}
+                        onClick={() => setSearch("")}
+                      >
+                        <RxCross2 />
+                      </div>
                     </div>
                   </div>
+                  {OpenSearch ? (
+                    <>
+                      <div
+                        className="bg-mainblue py-3  hover:bg-mainNormalBlue  duration-300 px-6 text-white rounded-r-full cursor-pointer "
+                        onClick={() => setOpenSearch(false)}
+                      >
+                        <FaSearch />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <div
+                        className="bg-mainblue py-3  hover:bg-mainNormalBlue  duration-300 px-6 text-white rounded-r-full cursor-pointer rounded-l-full"
+                        onClick={() => setOpenSearch(true)}
+                      >
+                        <FaSearch />
+                      </div>
+                    </>
+                  )}
                 </div>
-                {OpenSearch ? (
-                  <>
-                    <div
-                      className="bg-mainblue py-3  hover:bg-mainNormalBlue  duration-300 px-6 text-white rounded-r-full cursor-pointer "
-                      onClick={() => setOpenSearch(false)}
-                    >
-                      <FaSearch />
+                {search && (
+                  <div className="absolute w-full bg-gray-50 top-full flex flex-col shadow-inner z-50 mt-2">
+                    <div className=" flex flex-col">
+                      {searchRs.map((product: any, idx: number) => (
+                        <Link
+                          href={`/chi-tiet-san-pham/${product.url}`}
+                          key={idx}
+                          className="cursor-pointer p-2 hover:bg-gray-100"
+                        >
+                          {product.title}
+                        </Link>
+                      ))}
                     </div>
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <div
-                      className="bg-mainblue py-3  hover:bg-mainNormalBlue  duration-300 px-6 text-white rounded-r-full cursor-pointer rounded-l-full"
-                      onClick={() => setOpenSearch(true)}
-                    >
-                      <FaSearch />
-                    </div>
-                  </>
+                  </div>
                 )}
               </div>
-              {search && (
-                <div className="absolute w-full bg-gray-50 top-full flex flex-col shadow-inner z-50 mt-2">
-                  <div className=" flex flex-col">
-                    {searchRs.map((product: any, idx: number) => (
-                      <Link
-                        href={`/chi-tiet-san-pham/${product.url}`}
-                        key={idx}
-                        className="cursor-pointer p-2 hover:bg-gray-100"
-                      >
-                        {product.title}
-                      </Link>
-                    ))}
+            </div>
+
+            <div className=" z-50 bg-none">
+              <div className="flex flex-col  ">
+                <div className=" group text-white font-normal">
+                  <div className="grid grid-cols-5">
+                    <div className="p-2 flex justify-between col-span-1  items-center gap-10 bg-mainblue cursor-pointer hover:bg-mainNormalBlue duration-300">
+                      <div className="flex items-center">
+                        <IoIosMenu />
+                        <div className="ml-2">Danh mục sản phẩm</div>
+                      </div>
+                      <FaAngleDown />
+                    </div>
+                  </div>
+                  <div className="bg-none  text-black h-160 hidden group-hover:block  duration-300">
+                    {TypeProductItems.map((item: any, idx: number) => {
+                      const sort = productTypes.filter(
+                        (type: any) => type.parentUrl === item.value
+                      );
+                      return (
+                        <div
+                          className="relative group/main  grid grid-cols-5 h-max"
+                          onMouseEnter={() => HandleMouseEnter(item.value)}
+                        >
+                          <div
+                            key={idx}
+                            className="flex bg-white justify-between items-center p-2 cursor-pointer hover:bg-gray-100 duration-300"
+                            onClick={() => HandleSelectProductType(idx)}
+                          >
+                            <div>{item.label}</div>
+                            {sort.length > 0 && (
+                              <>
+                                {" "}
+                                <div className="-rotate-90">
+                                  <FaAngleDown />
+                                </div>
+                              </>
+                            )}
+                          </div>
+                          {sort.length > 0 && (
+                            <>
+                              {" "}
+                              <div className="flex flex-col top-0 left-[260px] h-max absolute z-50  ">
+                                <div className=" hidden group-hover/main:block duration-300">
+                                  <div className="p-2 grid grid-cols-4 gap-2 bg-white">
+                                    {DropdownValue?.map(
+                                      (item: any, idx: number) => {
+                                        const children = item?.children;
+                                        return (
+                                          <div key={idx}>
+                                            <div>
+                                              <h2 className="p-2 border-b font-bold  text-redPrimmary">
+                                                {item?.type}
+                                              </h2>
+                                              <div className="flex flex-col font-light">
+                                                {children.map(
+                                                  (items: any, idx: number) => (
+                                                    <div key={idx}>
+                                                      <p className="border-b p-2 hover:text-mainNormalBlue duration-300 cursor-pointer">
+                                                        {items.children}
+                                                      </p>
+                                                    </div>
+                                                  )
+                                                )}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        );
+                                      }
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
