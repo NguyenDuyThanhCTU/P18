@@ -26,9 +26,6 @@ const AddProduct = ({}) => {
   const [typeUrl, setTypeUrl] = useState<string>("");
   const [parentUrl, setParentUrl] = useState<string>("");
   const [ListSubImage, setListSubImage] = useState<any>([]);
-  const [isParent2, setIsParent2] = useState<any>("");
-  const [parent2Url, setParent2Url] = useState<any>("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { setDropDown, setIsRefetch } = useStateProvider();
   const { productTypes } = useData();
   const [price, setPrice] = useState<any>("");
@@ -46,7 +43,6 @@ const AddProduct = ({}) => {
       const formattedType = convertToCodeFormat(isType);
       const formattedParent = convertToCodeFormat(isParent);
       const formattedTitle = convertToCodeFormat(Title);
-      const formattedParent2 = convertToCodeFormat(isParent2);
       if (formattedType) {
         setTypeUrl(formattedType);
       }
@@ -57,12 +53,9 @@ const AddProduct = ({}) => {
       if (formattedTitle) {
         setTitleUrl(formattedTitle);
       }
-      if (formattedParent2) {
-        setParent2Url(formattedParent2);
-      }
     };
     handleChange();
-  }, [isType, isParent, isChildren, Title, isParent2]);
+  }, [isType, isParent, isChildren, Title]);
   const handleDiscard = () => {
     setTitle("");
     setTitleUrl("");
@@ -110,8 +103,6 @@ const AddProduct = ({}) => {
         typeUrl: typeUrl,
         parent: isParent,
         parentUrl: parentUrl,
-        parent2: isParent2,
-        parent2Url: parent2Url,
         state: "Còn hàng",
         url: titleUrl,
         discount: 0,
@@ -286,7 +277,7 @@ const AddProduct = ({}) => {
                       <label className="text-md font-medium ">Mục 2:</label>
                       <select
                         className="outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
-                        onChange={(e) => setIsParent2(e.target.value)}
+                        onChange={(e) => setIsType(e.target.value)}
                       >
                         <option> -- Chọn mục 2 --</option>
 
@@ -305,7 +296,7 @@ const AddProduct = ({}) => {
                     </div>
                   </>
                 )}
-                {isParent2 && (
+                {isType && (
                   <>
                     <div className="flex flex-col gap-2 w-[190px]">
                       <label className="text-md font-medium ">
@@ -318,7 +309,7 @@ const AddProduct = ({}) => {
                         optionLabelProp="label"
                       >
                         {productTypes
-                          ?.filter((item: any) => item.type === isParent2)[0]
+                          ?.filter((item: any) => item.type === isType)[0]
                           ?.children?.map((item: any, idx: any) => {
                             return (
                               <Option

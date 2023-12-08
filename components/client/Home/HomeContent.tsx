@@ -4,24 +4,29 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-import DisplayProduct from "../Product/DisplayProduct";
 import { TypeProductItems } from "@assets/item";
+import DisplayHomeProducts from "./DisplayHomeProducts";
 
 const HomeContent = ({ Data }: any) => {
-  console.log(Data);
-  const { productTypes } = useData();
-  const DrapProduct = Data.filter((product: any) => product.parent === "Drap");
-  const Product1 = Data.filter((product: any) => product.parent === "Gối");
-  const Product2 = Data.filter((product: any) => product.parent === "Phụ kiện");
+  const { productTypes, Products } = useData();
+
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white py-10">
       {TypeProductItems?.map((item: any, idx: number) => {
-        const sortProduct = Data.filter(
+        const sortProduct = Products.filter(
           (product: any) => product.parentUrl === item.value
+        );
+        // console.log(sortProduct);
+        const type = productTypes.filter(
+          (type: any) => type.parentUrl === item.value
         );
         return (
           <div key={idx}>
-            <DisplayProduct Data={sortProduct} Topic={item.type} />
+            <DisplayHomeProducts
+              Data={sortProduct}
+              Topic={item.label}
+              Type={type}
+            />
           </div>
         );
       })}{" "}
