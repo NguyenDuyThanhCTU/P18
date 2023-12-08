@@ -20,7 +20,6 @@ const Header = () => {
   const [openSearchMB, setOpenSearchMB] = useState(false);
   const [openTypeMB, setOpenTypeMB] = useState(0);
   const [openType, setOpenType] = useState(0);
-  const [DropdownValue, setDropdownValue] = useState<any>();
   const HandleSelectProductType = (idx: number) => {
     if (openType === idx + 1) {
       setOpenType(0);
@@ -28,10 +27,7 @@ const Header = () => {
       setOpenType(idx + 1);
     }
   };
-  const HandleMouseEnter = (type: any) => {
-    const sort = productTypes?.filter((item: any) => item.parentUrl === type);
-    setDropdownValue(sort);
-  };
+
   return (
     <>
       <div className="p:hidden d:block">
@@ -172,11 +168,10 @@ const Header = () => {
                       );
                       return (
                         <div
+                          key={idx}
                           className="relative group/main  grid grid-cols-5 h-max"
-                          onMouseEnter={() => HandleMouseEnter(item.value)}
                         >
                           <div
-                            key={idx}
                             className="flex bg-white justify-between items-center p-2 cursor-pointer hover:bg-gray-100 duration-300"
                             onClick={() => HandleSelectProductType(idx)}
                           >
@@ -184,15 +179,15 @@ const Header = () => {
                             {sort.length > 0 && (
                               <>
                                 {" "}
-                                <div className="-rotate-90">
+                                <div className="rotate-0 duration-300 group-hover/main:-rotate-90">
                                   <FaAngleDown />
                                 </div>
                               </>
                             )}
                           </div>
-                          {sort.length > 0 && (
+                          {/* {sort.length > 0 && (
                             <>
-                              {" "}
+                          
                               <div className="flex flex-col top-0 left-[260px] h-max absolute z-50  ">
                                 <div className=" hidden group-hover/main:block duration-300">
                                   <div className="p-2 grid grid-cols-4 gap-2 bg-white">
@@ -225,6 +220,53 @@ const Header = () => {
                                 </div>
                               </div>
                             </>
+                          )} */}
+                          {sort.length > 0 && (
+                            <div className="flex flex-col top-0 left-[260px] h-max absolute z-50  ">
+                              <div className=" hidden group-hover/main:block duration-300">
+                                <div className=" flex flex-col shadow-sm  bg-white">
+                                  {sort?.map((item: any, idx: number) => {
+                                    const children = item?.children;
+                                    console.log(sort, children);
+                                    return (
+                                      <div
+                                        key={idx}
+                                        className="group/lv1 border-b hover:bg-gray-100 duration-300 cursor-pointer"
+                                      >
+                                        <div className="py-2 px-4   flex justify-between items-center gap-5 ">
+                                          <h2 className="  font-bold  ">
+                                            {item?.type}
+                                          </h2>
+                                          {children.length > 0 && (
+                                            <div className="group-hover/lv1:-rotate-90 duration-300  rotate-0">
+                                              <FaAngleDown />
+                                            </div>
+                                          )}
+                                        </div>
+                                        {children.length > 0 && (
+                                          <div className="absolute top-0 left-[187px] hidden group-hover/lv1:block ">
+                                            <div className="flex flex-col bg-white ">
+                                              {children.map(
+                                                (items: any, idx: number) => (
+                                                  <div
+                                                    className="py-2 px-4 hover:bg-gray-100 duration-300   flex justify-between items-center gap-5 "
+                                                    key={idx}
+                                                  >
+                                                    <h2 className="  font-bold w-max ">
+                                                      {items.children}
+                                                    </h2>
+                                                  </div>
+                                                )
+                                              )}
+                                            </div>
+                                          </div>
+                                        )}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </div>
                           )}
                         </div>
                       );
