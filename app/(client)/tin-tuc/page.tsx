@@ -2,8 +2,14 @@ import NewsCategory from "@components/client/News/NewsCategory";
 import { getDataByTypeProps } from "@lib/get-data";
 
 import moment from "moment";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Tin tức | Camera Vstarcam ",
+  description: "Camera Vstarcam - An Lành Cho Gia Đình Việt",
+};
 
 const NewsPage = async () => {
   const Data = await getDataByTypeProps("posts", "topic", "Tin tức");

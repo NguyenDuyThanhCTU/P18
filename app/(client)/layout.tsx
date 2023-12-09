@@ -14,13 +14,13 @@ const layout: React.FC<ClientLayoutProps> = ({ children }) => {
   return (
     <div className="font-LexendDeca font-extralight">
       <Header />
-      <div className="">{children}</div>
-      {/* <OnTop />
-      <Hotline /> */}
+      <div className="p:mt-[84px] d:mt-0">{children}</div>
+      <OnTop />
+      <Hotline />
 
-      {/* <TopFooter />
+      <TopFooter />
       <Footer />
-      <Copyright /> */}
+      <Copyright />
     </div>
   );
 };

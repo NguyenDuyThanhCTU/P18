@@ -24,6 +24,11 @@ const Contact: React.FC = () => {
       placeholder: ContactData.phone,
     },
     {
+      name: "Số điện thoại phụ",
+      type: "input",
+      placeholder: ContactData.subphone,
+    },
+    {
       name: "Gmail",
       type: "input",
       placeholder: ContactData.gmail,
@@ -61,14 +66,16 @@ const Contact: React.FC = () => {
       if (idx === 0) {
         newData = { phone: Data };
       } else if (idx === 1) {
-        newData = { gmail: Data };
+        newData = { subphone: Data };
       } else if (idx === 2) {
-        newData = { website: Data };
+        newData = { gmail: Data };
       } else if (idx === 3) {
-        newData = { worktime: Data };
+        newData = { website: Data };
       } else if (idx === 4) {
-        newData = { address: Data };
+        newData = { worktime: Data };
       } else if (idx === 5) {
+        newData = { address: Data };
+      } else if (idx === 6) {
         newData = { location: Data };
       }
 

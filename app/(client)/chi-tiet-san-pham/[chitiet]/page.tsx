@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "LachMarket",
-  description: "LachMarket",
+  title: "Chi tiết sản phẩm | Camera Vstarcam ",
+  description: "Camera Vstarcam - An Lành Cho Gia Đình Việt",
 };
 
 const ProductDetailPage = async ({

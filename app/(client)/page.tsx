@@ -9,8 +9,8 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "CÔNG TY TNHH THƯƠNG MẠI SẢN XUẤT VIỆT Á",
-  description: "CÔNG TY TNHH THƯƠNG MẠI SẢN XUẤT VIỆT Á ",
+  title: "Trang Chủ | Camera Vstarcam ",
+  description: "Camera Vstarcam - An Lành Cho Gia Đình Việt",
 };
 
 const HomePage = async () => {
@@ -22,8 +22,8 @@ const HomePage = async () => {
       <HomeSlide />
       <div className="d:w-[1400px] d:mx-auto p:w-auto p:mx-2 ">
         <HomeContent Data={ProductData} />
-        {/* <HomeNews Data={Data} />
-        <HomeVideo /> */}
+        <HomeNews Data={Data} />
+        <HomeVideo />
       </div>
       <HomePolicy />
     </div>

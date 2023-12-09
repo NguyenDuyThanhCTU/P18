@@ -1,9 +1,15 @@
 import NewsCategory from "@components/client/News/NewsCategory";
 import { getDataByTypeProps } from "@lib/get-data";
 import moment from "moment";
+import { Metadata } from "next";
 
 import React from "react";
 import { AiOutlineClockCircle, AiOutlineUser } from "react-icons/ai";
+
+export const metadata: Metadata = {
+  title: "Tin tức | Camera Vstarcam ",
+  description: "Camera Vstarcam - An Lành Cho Gia Đình Việt",
+};
 
 const NewsDetailPage = async ({ params }: { params: { slug: string } }) => {
   const Data = await getDataByTypeProps("posts", "url", params.slug);
@@ -14,7 +20,7 @@ const NewsDetailPage = async ({ params }: { params: { slug: string } }) => {
     .unix(Data[0]?.createdAt.seconds)
     .format("MMMM DD, YYYY");
   return (
-    <div className="p:w-auto d:w-[1300px] p:mx-auto d:mx-auto grid p:grid-cols-1 d:grid-cols-7 font-LexendDeca font-extralight gap-10">
+    <div className="p:w-auto d:w-[1300px] p:mx-2 d:mx-auto grid p:grid-cols-1 d:grid-cols-7 font-LexendDeca font-extralight gap-10">
       <div className="border h-max border-gray-400 col-span-2 d:block p:hidden">
         <div className="p-3 ">
           <h2 className="text-[20px] uppercase text-center pb-2 border-b border-black">
@@ -50,9 +56,9 @@ const NewsDetailPage = async ({ params }: { params: { slug: string } }) => {
       <div className="border h-max border-gray-400 p:col-auto d:col-span-2 d:hidden p:block">
         <div className="p-3 ">
           <h2 className="text-[20px] uppercase text-center pb-2 border-b border-black">
-            Bài viết mới nhất
+            Bài viết liên quan
           </h2>
-          <NewsCategory Data={Data} />
+          <NewsCategory Data={DataCategory} />
         </div>
       </div>
     </div>

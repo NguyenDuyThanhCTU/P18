@@ -3,6 +3,7 @@ import { HeaderItems, TypeProductItems } from "@assets/item";
 import { useData } from "@context/DataProviders";
 import { Drawer } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import { CiMail } from "react-icons/ci";
@@ -25,6 +26,13 @@ const Header = () => {
     );
     setSearchRs(sort);
   }, [Products, search]);
+
+  const router = useRouter();
+  const HandleNavigate = (url: any) => {
+    setOpen(false);
+    router.push(url);
+  };
+
   return (
     <>
       <div className="p:hidden d:block">
@@ -355,7 +363,7 @@ const Header = () => {
             open={open}
           >
             <div className=" ">
-              <div className="p-5">
+              <div onClick={() => HandleNavigate("/")} className="p-5">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/target-31b09.appspot.com/o/z4946974075826_a7f354251fb7daa00a092fd804cdd655.jpg?alt=media&token=38e448e7-2887-488c-9e46-c71492d73f04"
                   alt="logo"
@@ -369,21 +377,24 @@ const Header = () => {
                   return (
                     <div key={idx}>
                       <div
-                        className="w-full justify-between py-2 border-t items-center
+                        className="w-full justify-between py-2 border-t items-center cursor-pointer
                      flex"
                       >
-                        <Link
-                          href={`/san-pham/${item.value}`}
+                        <div
+                          onClick={() =>
+                            HandleNavigate(`/san-pham/${item.value}`)
+                          }
                           className={`${
-                            openTypeMB === idx + 1 && "text-orange-500"
+                            openTypeMB === idx + 1 && "text-orange-500  "
                           }`}
                         >
                           {item.label}
-                        </Link>
+                        </div>
                         {sort?.length > 0 && (
                           <div
                             className={`${
-                              openTypeMB === idx + 1 && "text-orange-500"
+                              openTypeMB === idx + 1 &&
+                              "text-orange-500 cursor-pointer"
                             }`}
                             onClick={() => setOpenTypeMB(idx + 1)}
                           >
@@ -394,13 +405,17 @@ const Header = () => {
                       {sort.length > 0 && openTypeMB === idx + 1 && (
                         <div className="ml-2 flex flex-col">
                           {sort?.map((items: any, idx: number) => (
-                            <Link
-                              href={`/san-pham/${item.value}?type=${items.typeUrl}`}
+                            <div
+                              onClick={() =>
+                                HandleNavigate(
+                                  `/san-pham/${item.value}?type=${items.typeUrl}`
+                                )
+                              }
                               key={idx}
-                              className="hover:text-orange-500 py-1"
+                              className="hover:text-orange-500 cursor-pointer py-1"
                             >
                               {items.type}
-                            </Link>
+                            </div>
                           ))}
                         </div>
                       )}
@@ -411,13 +426,13 @@ const Header = () => {
               <div>
                 <div className="flex flex-col mt-2 ">
                   {HeaderItems.map((item: any, idx: number) => (
-                    <Link
-                      href={`/${item.value}`}
+                    <div
+                      onClick={() => HandleNavigate(`/${item.value}`)}
                       className="cursor-pointer border-b hover:text-red-500 duration-300 py-2"
                       key={idx}
                     >
                       {item.label}
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>

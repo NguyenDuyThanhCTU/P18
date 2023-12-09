@@ -132,7 +132,9 @@ const Contact = () => {
             </div>
           </div>
         ))} */}
-        <h2 className="font-Montserrat text-[32px] font-light ">Nệm Việt Á</h2>
+        <h2 className="font-Montserrat text-[32px] font-light ">
+          Camera Vstarcam - An Lành Cho Gia Đình Việt
+        </h2>
         <div className="flex flex-col items-start gap-2">
           <div className="flex items-center gap-2">
             <IoLocationOutline />
@@ -145,7 +147,7 @@ const Contact = () => {
         </div>
         <div>
           <img
-            src="https://firebasestorage.googleapis.com/v0/b/nemvieta-b328d.appspot.com/o/z4926494641228_3abe23a121fa2166b6d232162a9ce2f4.jpg?alt=media&token=c289d670-4128-44c8-aea4-d51960905106"
+            src="https://firebasestorage.googleapis.com/v0/b/vstarcamvietnam-ebe57.appspot.com/o/5.jpg?alt=media&token=63a73f9c-35fe-4e37-9abd-22398a68a425"
             alt="demo"
             className="shadow-sm shadow-gray-300"
           />

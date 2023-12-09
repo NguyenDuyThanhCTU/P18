@@ -1,6 +1,12 @@
 import DisplayProduct from "@components/client/Product/DisplayProduct";
 import { getDataByTypeProps } from "@lib/get-data";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Sản Phẩm | Camera Vstarcam ",
+  description: "Camera Vstarcam - An Lành Cho Gia Đình Việt",
+};
 
 const DisplayProductPage = async ({
   params,

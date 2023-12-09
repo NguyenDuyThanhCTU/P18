@@ -35,7 +35,7 @@ const HomeSlide = () => {
                   <img
                     src={item.image}
                     alt="slide"
-                    className="w-full h-full hover:scale-105 duration-300 object-cover "
+                    className="w-full    hover:scale-105 duration-300 object-cover "
                   />
                 </Link>
               </SwiperSlide>

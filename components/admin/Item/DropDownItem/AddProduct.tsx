@@ -87,7 +87,7 @@ const AddProduct = ({}) => {
         message: "Lỗi",
         description: `Vui lòng chọn ảnh sản phẩm!`,
       });
-    } else if (!isType) {
+    } else if (!isParent) {
       notification["error"]({
         message: "Lỗi",
         description: `Vui lòng chọn mục sản phẩm!`,
