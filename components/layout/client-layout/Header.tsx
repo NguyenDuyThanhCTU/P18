@@ -3,7 +3,7 @@ import { HeaderItems, TypeProductItems } from "@assets/item";
 import { useData } from "@context/DataProviders";
 import { Drawer } from "antd";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillCaretRight } from "react-icons/ai";
 import { CiMail } from "react-icons/ci";
 import { FaAngleDown, FaPhoneVolume, FaSearch } from "react-icons/fa";
@@ -16,11 +16,15 @@ const Header = () => {
   const [searchRs, setSearchRs] = useState([]);
   const [open, setOpen] = useState(false);
   const [OpenSearch, setOpenSearch] = useState(false);
-  const { ContactData, TradeMarkData, productTypes } = useData();
+  const { ContactData, Products, productTypes } = useData();
   const [openSearchMB, setOpenSearchMB] = useState(false);
   const [openTypeMB, setOpenTypeMB] = useState(0);
-  const [openType, setOpenType] = useState(0);
-
+  useEffect(() => {
+    const sort = Products?.filter((product: any) =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchRs(sort);
+  }, [Products, search]);
   return (
     <>
       <div className="p:hidden d:block">
@@ -65,12 +69,13 @@ const Header = () => {
               </div>
               <div className="flex gap-5 w-max">
                 {HeaderItems.map((item: any, idx: number) => (
-                  <div
+                  <Link
+                    href={`/${item.value}`}
                     key={idx}
                     className="cursor-pointer w-max font-normal text-black  hover:text-mainNormalBlue duration-300 text-[18px]"
                   >
                     {item.label}
-                  </div>
+                  </Link>
                 ))}
               </div>
 
@@ -131,7 +136,7 @@ const Header = () => {
                         <Link
                           href={`/chi-tiet-san-pham/${product.url}`}
                           key={idx}
-                          className="cursor-pointer p-2 hover:bg-gray-100"
+                          className="cursor-pointer p-2 hover:bg-gray-100 truncate"
                         >
                           {product.title}
                         </Link>
@@ -142,7 +147,7 @@ const Header = () => {
               </div>
             </div>
 
-            <div className=" z-50 bg-none">
+            <div className=" z-50 bg-none ">
               <div className="flex flex-col  ">
                 <div className=" group text-white font-normal">
                   <div className="grid grid-cols-5">

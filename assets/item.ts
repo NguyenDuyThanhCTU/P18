@@ -260,15 +260,15 @@ export const HeaderItems = [
 
   {
     label: "Camera Trọn bộ",
-    value: "camera-tron-bo",
+    value: "san-pham/camera-tron-bo",
   },
   {
     label: "Phụ Kiện Camera",
-    value: "phu-kien-camera",
+    value: "san-pham/phu-kien-camera",
   },
   {
     label: "Thiết Bị Thông Minh",
-    value: "thiet-bi-thong-minh",
+    value: "san-pham/thiet-bi-thong-minh",
   },
   {
     label: "Dự Án",

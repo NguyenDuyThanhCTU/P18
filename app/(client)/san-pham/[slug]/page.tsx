@@ -28,7 +28,7 @@ const DisplayProductPage = async ({
           Data={Data}
           Parent={params.slug}
           Children={childrenParam}
-          type={typeParam}
+          Type={typeParam}
         />
       </div>
     </div>
