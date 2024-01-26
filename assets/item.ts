@@ -1,4 +1,4 @@
-import { SiZalo } from "react-icons/si";
+import { SiWebmoney, SiZalo } from "react-icons/si";
 import {
   BsFacebook,
   BsMessenger,
@@ -7,40 +7,78 @@ import {
   BsFillSendExclamationFill,
   BsFillSendCheckFill,
   BsFillSendXFill,
+  BsPostcard,
+  BsFileEarmarkPost,
 } from "react-icons/bs";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import {
   AiFillInstagram,
+  AiOutlineNodeCollapse,
   AiOutlineProfile,
   AiOutlineSlack,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
-import { FaFirstOrderAlt, FaTiktok } from "react-icons/fa";
+import {
+  FaChartLine,
+  FaFirstOrderAlt,
+  FaHome,
+  FaRegNewspaper,
+  FaTiktok,
+  FaTrademark,
+} from "react-icons/fa";
 import { AiOutlineTwitter } from "react-icons/ai";
-import { BiNetworkChart, BiSlideshow } from "react-icons/bi";
+import {
+  BiCube,
+  BiHappy,
+  BiHive,
+  BiLoader,
+  BiNetworkChart,
+  BiPencil,
+  BiSlideshow,
+  BiSolidUserAccount,
+} from "react-icons/bi";
 import {
   TbCarouselHorizontal,
+  TbCategory,
   TbCubeSend,
   TbListDetails,
+  TbReport,
+  TbSeo,
   TbSlideshow,
 } from "react-icons/tb";
 import {
   MdAirlineSeatReclineNormal,
+  MdConnectWithoutContact,
   MdManageAccounts,
+  MdMiscellaneousServices,
+  MdOndemandVideo,
+  MdOutlineHistory,
   MdOutlineLocalCarWash,
   MdOutlinePostAdd,
+  MdPolicy,
 } from "react-icons/md";
 import { CgListTree, CgSize } from "react-icons/cg";
-import { IoMdColorWand } from "react-icons/io";
-import { GiExitDoor } from "react-icons/gi";
+import { IoIosConstruct, IoMdColorWand } from "react-icons/io";
+import { GiExitDoor, GiStarSattelites } from "react-icons/gi";
 
-import { CiViewList } from "react-icons/ci";
+import { CiBoxList, CiViewList } from "react-icons/ci";
 import { IconType } from "react-icons/lib";
-import { IoFlashOutline } from "react-icons/io5";
+import {
+  IoFlashOutline,
+  IoImagesOutline,
+  IoListSharp,
+  IoSettingsOutline,
+  IoShareSocialOutline,
+} from "react-icons/io5";
+import { PiCirclesThreePlusDuotone, PiShareNetworkLight } from "react-icons/pi";
+import { LuGitCompare } from "react-icons/lu";
+import { GoGitBranch } from "react-icons/go";
 
 interface IconMappingType {
   [key: string]: IconType;
 }
+export const WebsiteUrl = "https://xedapdiencantho.com";
+export const DB_URL = "xedapdiencantho-b082a";
 
 export const IconMapping: IconMappingType = {
   IoFlashOutline: IoFlashOutline,
@@ -75,62 +113,40 @@ export const IconMapping: IconMappingType = {
   TbCubeSend: TbCubeSend,
   BsFillSendXFill: BsFillSendXFill,
   CiViewList: CiViewList,
+  MdMiscellaneousServices: MdMiscellaneousServices,
+  FaHome: FaHome,
+  IoIosConstruct: IoIosConstruct,
+  FaRegNewspaper: FaRegNewspaper,
+  IoSettingsOutline: IoSettingsOutline,
+  SiWebmoney: SiWebmoney,
+  FaTrademark: FaTrademark,
+  TbSeo: TbSeo,
+  TbCategory: TbCategory,
+  PiCirclesThreePlusDuotone: PiCirclesThreePlusDuotone,
+  CiBoxList: CiBoxList,
+  GiStarSattelites: GiStarSattelites,
+  BsPostcard: BsPostcard,
+  IoListSharp: IoListSharp,
+  MdPolicy: MdPolicy,
+  BsFileEarmarkPost: BsFileEarmarkPost,
+  FaChartLine: FaChartLine,
+  IoShareSocialOutline: IoShareSocialOutline,
+  PiShareNetworkLight: PiShareNetworkLight,
+  IoImagesOutline: IoImagesOutline,
+  BiSolidUserAccount: BiSolidUserAccount,
+  AiOutlineNodeCollapse: AiOutlineNodeCollapse,
+  MdOutlineHistory: MdOutlineHistory,
+  TbReport: TbReport,
+  BiLoader: BiLoader,
+  BiPencil: BiPencil,
+  BiCube: BiCube,
+  BiHappy: BiHappy,
+  BiHive: BiHive,
+  LuGitCompare: LuGitCompare,
+  GoGitBranch: GoGitBranch,
+  MdConnectWithoutContact: MdConnectWithoutContact,
+  MdOndemandVideo: MdOndemandVideo,
 };
-
-import paymentAnimation from "./animation/payment.json";
-import policyAnimation from "./animation/policy.json";
-import rulesAnimation from "./animation/rules.json";
-import securityAnimation from "./animation/security.json";
-
-export const ProductSidebarAdmin = [
-  {
-    name: "Giới thiệu",
-    icon: "AiOutlineSlack",
-  },
-  {
-    name: "Sản phẩm",
-    icon: "FaFirstOrderAlt",
-  },
-  {
-    name: "Sale",
-    icon: "IoFlashOutline",
-  },
-  {
-    name: "Đơn hàng",
-    icon: "AiOutlineUnorderedList",
-  },
-  {
-    name: "Chi nhánh",
-    icon: "CgListTree",
-  },
-];
-
-export const WebsiteSidebarAdmin = [
-  {
-    name: "Thông tin website",
-    icon: "TbListDetails",
-  },
-  {
-    name: "Slide trình chiếu",
-    icon: "TbSlideshow",
-  },
-  {
-    name: "Kênh truyền thông",
-    icon: "BiNetworkChart",
-  },
-  {
-    name: "Bài viết",
-    icon: "MdOutlinePostAdd",
-  },
-  {
-    name: "Video",
-    icon: "BiSlideshow",
-  },
-  {
-    name: "Tài khoản",
-    icon: "MdManageAccounts",
-  },
-];
 
 export const SocialMediaDashboard = [
   {
@@ -139,6 +155,7 @@ export const SocialMediaDashboard = [
     image:
       "https://atpsoftware.vn/wp-content/uploads//2020/03/20211208103735_id_zalo-1.jpg",
     style: "hover:text-blue-400 hover:bg-white",
+    field: "zalo",
   },
   {
     title: "Facebook cá nhân",
@@ -146,6 +163,7 @@ export const SocialMediaDashboard = [
     image:
       "https://images.unsplash.com/photo-1633675254053-d96c7668c3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZmFjZWJvb2slMjBsb2dvfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
     style: "hover:bg-white hover:text-blue-600",
+    field: "facebook",
   },
   {
     title: "Trang Fanpage",
@@ -153,6 +171,7 @@ export const SocialMediaDashboard = [
     image:
       "https://img.freepik.com/premium-photo/3d-pile-facebook-logo-background-facebook-famous-social-media-platform_73903-705.jpg?w=2000",
     style: "hover:bg-white hover:text-black p-1",
+    field: "fanpage",
   },
   {
     title: "Trang Messenger",
@@ -160,12 +179,14 @@ export const SocialMediaDashboard = [
     image:
       "https://img.freepik.com/premium-photo/3d-facebook-messenger-logo-application-blue-background-social-media-communication_73903-695.jpg",
     style: "hover:bg-white hover:text-blue-600 p-1",
+    field: "messenger",
   },
   {
     title: "Trang Instagram",
     icon: "AiFillInstagram",
     image: "https://images2.alphacoders.com/123/1230947.png",
     style: "hover:bg-pink-500 hover:text-white",
+    field: "instagram",
   },
 
   {
@@ -173,114 +194,213 @@ export const SocialMediaDashboard = [
     icon: "FaTiktok",
     image: "https://images.alphacoders.com/112/1123670.png",
     style: "hover:bg-black hover:text-white p-1",
-  },
-
-  {
-    title: "Trang Twitter",
-    icon: "AiOutlineTwitter",
-    image:
-      "https://vietnix.vn/wp-content/uploads/2022/07/mang-xa-hoi-twitter.webp",
-    style: "hover:bg-white hover:text-blue-600 p-1",
-  },
-  {
-    title: "Trang YouTube",
-    icon: "BsYoutube",
-    image:
-      "https://img.nhandan.com.vn/Files/Images/2021/04/13/3A708284_F5B8_407D_ADC0_339DBEE-1618275907021.jpeg",
-    style: "hover:bg-red-600 hover:text-white p-1",
+    field: "tiktok",
   },
 ];
 
-export const OrderDashboardItems = [
+export const AdminPageHeaderItems = [
   {
-    name: "Mới",
-    icon: "BsFillSendExclamationFill",
+    label: "Cấu Hình",
+    value: "cau-hinh",
+    icon: "IoSettingsOutline",
+    children: [
+      // {
+      //   label: "Thông Tin Website",
+      //   value: "thong-tin-website",
+      //   icon: "SiWebmoney",
+      // },
+      // {
+      //   label: "Liên Hệ",
+      //   value: "lien-he",
+      //   icon: "MdConnectWithoutContact",
+      // },
+      // {
+      //   label: "Cấu Hình SEO",
+      //   value: "cau-hinh-seo",
+      //   icon: "TbSeo",
+      // },
+    ],
   },
   {
-    name: "Đã phản hồi",
-    icon: "BsFillSendCheckFill",
+    label: "Sản Phẩm",
+    value: "danh-sach-san-pham",
+    icon: "GiStarSattelites",
+    children: [
+      {
+        label: "Danh Sách Sản Phẩm",
+        value: "danh-sach-san-pham",
+        icon: "PiCirclesThreePlusDuotone",
+      },
+      {
+        label: "Danh Mục Sản Phẩm",
+        value: "danh-muc-san-pham",
+        icon: "CiBoxList",
+      },
+    ],
   },
   {
-    name: "Đã thanh toán",
-    icon: "TbCubeSend",
+    label: "Bài Viết",
+    value: "danh-sach-bai-viet",
+    icon: "BsPostcard",
+    children: [
+      {
+        label: "Danh Sách Bài Viết",
+        value: "danh-sach-bai-viet",
+        icon: "IoListSharp",
+      },
+      {
+        label: "Danh Mục Bài Viết",
+        value: "danh-muc-bai-viet",
+        icon: "CgListTree",
+      },
+      // {
+      //   label: "Điều Khoản Sử Dụng",
+      //   value: "dieu-khoan-su-dung",
+      //   icon: "MdPolicy",
+      // },
+      {
+        label: "Bài giới thiệu",
+        value: "bai-gioi-thieu",
+        icon: "BsFileEarmarkPost",
+      },
+      // {
+      //   label: "Cấu Hình SEO",
+      //   value: "cau-hinh-seo",
+      //   icon: "FaChartLine",
+      // },
+    ],
   },
   {
-    name: "Hủy đơn",
-    icon: "BsFillSendXFill",
+    label: "Truyền Thông",
+    value: "kenh-truyen-thong",
+    icon: "IoShareSocialOutline",
+    children: [
+      {
+        label: "Kênh Truyền Thông",
+        value: "kenh-truyen-thong",
+        icon: "PiShareNetworkLight",
+      },
+      {
+        label: "Slide giới thiệu",
+        value: "slide-gioi-thieu",
+        icon: "BiSlideshow",
+      },
+      {
+        label: "Hình Ảnh",
+        value: "hinh-anh",
+        icon: "IoImagesOutline",
+      },
+      {
+        label: "Video",
+        value: "video",
+        icon: "MdOndemandVideo",
+      },
+    ],
   },
   {
-    name: "Chi tiết đơn hàng",
-    icon: "CiViewList",
+    label: "Tài Khoản",
+    value: "tai-khoan",
+    icon: "MdManageAccounts",
+    children: [
+      // {
+      //   label: "Thông Tin Tài Khoản",
+      //   value: "thong-tin-tai-khoan",
+      //   icon: "AiOutlineProfile",
+      // },
+      // {
+      //   label: "Danh Sách Tài Khoản",
+      //   value: "danh-sach-tai-khoan",
+      //   icon: "BiSolidUserAccount",
+      // },
+      // {
+      //   label: "Phân Quyền",
+      //   value: "phan-quyen",
+      //   icon: "AiOutlineNodeCollapse",
+      // },
+      // {
+      //   label: "Lịch Sử Hoạt Động",
+      //   value: "lich-su-hoat-dong",
+      //   icon: "MdOutlineHistory",
+      // },
+    ],
+  },
+  {
+    label: "Báo Cáo",
+    value: "bao-cao",
+    icon: "TbReport",
+    children: [
+      // {
+      //   label: "Lượt Truy Cập",
+      //   value: "luot-truy-cap",
+      //   icon: "BiLoader",
+      // },
+      // {
+      //   label: "Phản Hồi của Khách Hàng",
+      //   value: "Phan-hoi-cua-khach-hang",
+      //   icon: "BiPencil",
+      // },
+      // {
+      //   label: "Đơn Hàng",
+      //   value: "don-hang",
+      //   icon: "BiCube",
+      // },
+      // {
+      //   label: "Sản Phẩm Xem Nhiều",
+      //   value: "san-pham-xem-nhieu",
+      //   icon: "BiHappy",
+      // },
+    ],
+  },
+  {
+    label: "Tiện Ích",
+    value: "tien-ich",
+    icon: "BiHive",
+
+    children: [
+      {
+        label: "Đối tác",
+        value: "doi-tac",
+        icon: "LuGitCompare",
+      },
+      {
+        label: "Chi Nhánh",
+        value: "chi-nhanh",
+        icon: "GoGitBranch",
+      },
+    ],
   },
 ];
 
 /*<---------------------------------------------------------- Custom System ----------------------------------------------------------> */
 
-export const SocialMediaCustom = [
-  {
-    id: 0,
-    title: "Trang zalo",
-    icon: "SiZalo",
-    image:
-      "https://atpsoftware.vn/wp-content/uploads//2020/03/20211208103735_id_zalo-1.jpg",
-    style: "hover:text-blue-600 hover:bg-white ",
-  },
-  {
-    id: 1,
-    title: "Facebook cá nhân",
-    icon: "BsFacebook",
-    image:
-      "https://images.unsplash.com/photo-1633675254053-d96c7668c3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZmFjZWJvb2slMjBsb2dvfGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-    style: "hover:bg-white hover:text-blue-600",
-  },
-
-  {
-    id: 5,
-    title: "Trang Tiktok",
-    icon: "FaTiktok",
-    image: "https://images.alphacoders.com/112/1123670.png",
-    style: "hover:bg-black hover:text-white p-1",
-  },
-
-  {
-    id: 7,
-    title: "Trang YouTube",
-    icon: "BsYoutube",
-    image:
-      "https://img.nhandan.com.vn/Files/Images/2021/04/13/3A708284_F5B8_407D_ADC0_339DBEE-1618275907021.jpeg",
-    style: "hover:bg-red-600 hover:text-white p-1",
-  },
-];
-
 export const HeaderItems = [
   {
-    label: "Giới thiệu",
+    label: "Trang Chủ",
+    value: "",
+  },
+  {
+    label: "Giới Thiệu",
     value: "gioi-thieu",
   },
-
   {
-    label: "Camera Trọn bộ",
-    value: "san-pham/camera-tron-bo",
+    label: "Xe Đạp Trợ Lực Điện",
+    value: "xe-dap-tro-luc-dien",
   },
   {
-    label: "Phụ Kiện Camera",
-    value: "san-pham/phu-kien-camera",
+    label: "Xe Đạp Điện",
+    value: "xe-dap-dien",
   },
   {
-    label: "Thiết Bị Thông Minh",
-    value: "san-pham/thiet-bi-thong-minh",
-  },
-  {
-    label: "Dự Án",
-    value: "du-an",
-  },
-  {
-    label: "Tin tức",
+    label: "Sự Kiện",
     value: "tin-tuc",
   },
   {
-    label: "Liên hệ",
+    label: "Liên Hệ",
     value: "lien-he",
+  },
+  {
+    label: "Tiện Ích",
+    value: "dang-ky-lai-thu",
   },
 ];
 
@@ -313,127 +433,33 @@ export const ToolsTipsSocialMediaItems = [
 
 /*<-------------------------------------------------------------------------------------------------------------------- CUSTOM --------------------------------------------------------------------------------------------------------------------> */
 
-export const TypeProductItems = [
+export const ProductTypeItems = [
   {
-    label: "Wifi Camera",
-    value: "wifi-camera",
+    label: "Xe đạp điện",
+    value: "Xe đạp điện",
   },
   {
-    label: "Dual lens Camera",
-    value: "dual-lens-camera",
-  },
-  {
-    label: "4G Camera",
-    value: "4g-camera",
-  },
-  {
-    label: "Battery Camera",
-    value: "battery-camera",
-  },
-  {
-    label: "Camera Trọn bộ",
-    value: "camera-tron-bo",
-  },
-  {
-    label: "Phụ Kiện Camera",
-    value: "phu-kien-camera",
-  },
-  {
-    label: "Thiết Bị Thông Minh",
-    value: "thiet-bi-thong-minh",
+    label: "Xe đạp trợ lực điện",
+    value: "Xe đạp trợ lực điện",
   },
 ];
 
-export const TypeProductItems2 = [
-  {
-    label: "Sản phẩm khuyến mãi",
-    value: "san-pham-khuyen-mai",
-  },
-  {
-    label: "Sản phẩm bán chạy",
-    value: "san-pham-ban-chay",
-  },
-  {
-    label: "Sản phẩm mới",
-    value: "san-pham-moi",
-  },
-  {
-    label: "Sản phẩm nổi bật",
-    value: "san-pham-noi-bat",
-  },
-];
-
-export const TypePostItems = [
+export const PostsTypeItems = [
   {
     label: "Tin tức",
-    value: "tin-tuc",
-  },
-
-  {
-    label: "Giao nhận hàng",
-    value: "giao-nhan-hang",
-    animation: paymentAnimation,
+    value: "Tin tức",
   },
   {
-    label: "Chính sách đổi trả",
-    value: "chinh-sach-doi-tra",
-    animation: rulesAnimation,
+    label: "Dịch Vụ",
+    value: "Dịch Vụ",
   },
   {
-    label: "Chính sách đặt hàng",
-    value: "chinh-sach-dat-hang",
-    animation: policyAnimation,
+    label: "Bảng Giá",
+    value: "Bảng Giá",
   },
   {
-    label: "Chính sách bảo hành",
-    value: "chinh-sach-bao-hanh",
-    animation: securityAnimation,
-  },
-  {
-    label: "Giới thiệu về vstarcam",
-    value: "gioi-thieu-ve-vstarcam",
-  },
-];
-
-export const PolicyItems = [
-  {
-    label: "Giao nhận hàng",
-    value: "giao-nhan-hang",
-  },
-  {
-    label: "Chính sách đổi trả",
-    value: "chinh-sach-doi-tra",
-  },
-  {
-    label: "Chính sách đặt hàng",
-    value: "chinh-sach-dat-hang",
-  },
-  {
-    label: "Chính sách bảo mật",
-    value: "chinh-sach-bao-mat",
-  },
-];
-
-export const TopFooterItems = [
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/fresher.14f2aadd.png?alt=media&token=be56aab4-f2c5-42a8-a6d8-4b32c7109211",
-    label: "Hoàn trả không gặp rắc rối",
-  },
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/security.d7d83cc5.png?alt=media&token=8add07d2-33df-4a2c-b07a-1c983fc4b204",
-    label: "Giao dịch an toàn",
-  },
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/free-ship.658704f1.png?alt=media&token=6642d93d-9c27-4113-affc-e6a02d8811b1",
-    label: "Vận chuyển cực kỳ nhanh chóng",
-  },
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/taphoa-605ab.appspot.com/o/support-24-24.1848cf83.png?alt=media&token=8fe9426e-066c-4be6-b0b2-21026be68d27",
-    label: "Đảm bảo chất lượng",
+    label: "Chính sách",
+    value: "Chính sách",
   },
 ];
 

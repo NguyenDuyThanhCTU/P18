@@ -5,7 +5,7 @@ import { Button, Form, Input } from "antd";
 import { useRouter } from "next/router";
 import { useData } from "@context/DataProviders";
 import { useAuth } from "@context/AuthProviders";
-import { updateDocument } from "@config/Services/Firebase/FireStoreDB";
+import { updateOne } from "@lib/api";
 
 const Verify = ({ verify, isId }: any) => {
   const [open, setOpen] = useState(false);
@@ -38,7 +38,7 @@ const Verify = ({ verify, isId }: any) => {
       const newData = {
         status: "active",
       };
-      updateDocument("users", isId, newData).then(() => {
+      updateOne("users", isId, newData).then(() => {
         setVerify(true);
         notification["success"]({
           message: "Đăng nhập thành công !",

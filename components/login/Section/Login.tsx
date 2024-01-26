@@ -9,9 +9,9 @@ import { useStateProvider } from "@context/StateProvider";
 import { useAuth } from "@context/AuthProviders";
 import { useData } from "@context/DataProviders";
 import { googleSignIn } from "@config/Services/Auth/GoogleAuth";
-import { getDocumentsByField } from "@config/Services/Firebase/FireStoreDB";
 import Verify from "../Items/Verify";
 import { useRouter } from "next/navigation";
+import { findById } from "@lib/api";
 
 interface ChangePasswordProps {
   setIsChangePasswords: React.Dispatch<React.SetStateAction<boolean>>;
@@ -30,7 +30,7 @@ export const Login: React.FC<ChangePasswordProps> = ({
   const { setIsLoading } = useStateProvider();
 
   const { setVerify } = useAuth();
-  const { setHeaderAdmin, Accounts } = useData();
+  const { Accounts } = useData();
 
   const HandleChangePass = () => {
     if (Accounts.username === Username) {
@@ -45,56 +45,67 @@ export const Login: React.FC<ChangePasswordProps> = ({
   };
 
   const HandleLogin = () => {
-    if (Accounts) {
-      const sort = Accounts?.filter(
-        (item: any) => item.username === Username && item.password === Password
-      );
-      if (sort.length > 0) {
-        setHeaderAdmin(sort[0]);
-        setIsLoading(true);
-        setVerify(true);
-        notification["success"]({
-          message: "Đăng nhập thành công !",
-          description: `Chào mừng ${sort[0].username} đến với ${window.location.hostname} !`,
-        });
+    if (Username === "admin" && Password === "admin@") {
+      setVerify(true);
+      notification["success"]({
+        message: "Đăng nhập thành công !",
+        description: `Chào mừng ${Username} đến với ${window.location.hostname} !`,
+      });
 
-        router.push("/admin");
-      } else if (!Username || !Password) {
-        setErrorMessage(true);
-        setTimeout(() => {
-          setErrorMessage(false);
-        }, 2000);
-      } else {
-        setIsLoading(true);
-        notification["error"]({
-          message: "Lỗi !",
-          description: `
-        Tài khoản hoặc mật khẩu không đúng !`,
-        });
-      }
+      router.push("/admin");
     }
+    // if (Accounts) {
+    //   const sort = Accounts?.filter(
+    //     (item: any) => item.username === Username && item.password === Password
+    //   );
+    //   if (sort.length > 0) {
+    //     setIsLoading(true);
+    //     setVerify(true);
+    //     notification["success"]({
+    //       message: "Đăng nhập thành công !",
+    //       description: `Chào mừng ${sort[0].username} đến với ${window.location.hostname} !`,
+    //     });
+
+    //     router.push("/admin");
+    //   } else if (!Username || !Password) {
+    //     setErrorMessage(true);
+    //     setTimeout(() => {
+    //       setErrorMessage(false);
+    //     }, 2000);
+    //   } else {
+    //     setIsLoading(true);
+    //     notification["error"]({
+    //       message: "Lỗi !",
+    //       description: `
+    //     Tài khoản hoặc mật khẩu không đúng !`,
+    //     });
+    //   }
+    // }
   };
 
   const HandleGoogleAuth = () => {
-    googleSignIn().then((data) => {
-      getDocumentsByField("accounts", "email", data).then((data: any) => {
-        if (data[0].status === "active") {
-          setHeaderAdmin(data[0]);
-          setVerify(true);
-          notification["success"]({
-            message: "Đăng nhập thành công !",
-            description: `Chào mừng đến với ${window.location.hostname} !`,
-          });
-
-          setIsLoading(true);
-
-          router.push("/admin");
-        } else {
-          setIsVerify(true);
-          setIsId(data[0].id);
-        }
-      });
+    notification["info"]({
+      message: "Thông báo",
+      description: "Chức năng đang được phát triển !",
     });
+    // googleSignIn().then((data) => {
+    //   findById("accounts", data).then((data: any) => {
+    //     if (data[0].status === "active") {
+    //       setVerify(true);
+    //       notification["success"]({
+    //         message: "Đăng nhập thành công !",
+    //         description: `Chào mừng đến với ${window.location.hostname} !`,
+    //       });
+
+    //       setIsLoading(true);
+
+    //       router.push("/admin");
+    //     } else {
+    //       setIsVerify(true);
+    //       setIsId(data[0].id);
+    //     }
+    //   });
+    // });
   };
 
   return (

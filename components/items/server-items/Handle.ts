@@ -1,6 +1,5 @@
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getStorage } from "firebase/storage";
-import diacritic from "diacritic";
 
 export const uploadImage = async (fileOrEvent: any, locate: any) => {
   try {
@@ -30,11 +29,6 @@ export const uploadImage = async (fileOrEvent: any, locate: any) => {
   }
 };
 
-export const convertToCodeFormat = (text: string) => {
-  const textWithoutDiacritics = diacritic.clean(text);
-  return textWithoutDiacritics.replace(/\s+/g, "-").toLowerCase();
-};
-
 export const convertListIdToProduct = (
   listId: string[],
   listProduct: any[]
@@ -47,4 +41,18 @@ export const convertListIdToProduct = (
     }
   });
   return result;
+};
+
+export const convertDate = (date: Date) => {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  } as const;
+  return date?.toLocaleDateString("vi-VN", options);
+};
+
+export const convertToChartArray = (items: any) => {
+  return items.map((item: any) => item.label);
 };

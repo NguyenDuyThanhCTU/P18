@@ -6,151 +6,64 @@ interface Props {
 }
 
 export type DataContextType = {
-  ContactData: any;
-  setContactData: (contact: any) => void;
-  TradeMarkData: any;
-  setTradeMarkData: (trademark: any) => void;
-  Slides: any;
-  setSlides: (slides: any) => void;
-  SocialMedia: any;
-  setSocialMedia: (social: any) => void;
-  Videos: any;
-  setVideos: (video: any) => void;
-  Posts: any;
-  setPosts: (post: any) => void;
-  Accounts: any;
-  setAccounts: (account: any) => void;
-  UpdateId: any;
-  setUpdateId: (update: any) => void;
-  Products: any;
-  setProducts: (product: any) => void;
-  productTypes: any;
-  setProductType: (productType: any) => void;
-  Branches: any;
-  setBranches: (branch: any) => void;
-  Orders: any;
-  setOrders: (account: any) => void;
-  HeaderAdmin: any;
-  setHeaderAdmin: (headeradmin: any) => void;
-  Introduction: any;
-  setIntroduction: (introduction: any) => void;
-
-  Sale: any;
-  setSale: (sale: any) => void;
-  Notification: any;
-  setNotification: (notification: any) => void;
-  CartItems: any;
-  setCartItems: (cartItem: any) => void;
   currentUser: any;
   setCurrentUser: (user: any) => void;
+  Accounts: any;
+  setAccounts: (user: any) => void;
+  Products: any;
+  setProducts: (user: any) => void;
+  Posts: any;
+  setPosts: (user: any) => void;
+  Config: any;
+  setConfig: (user: any) => void;
+  CartItems: any;
+  setCartItems: (user: any) => void;
+  Bill: any;
+  setBill: (user: any) => void;
 };
 
 export const DataContext = createContext<DataContextType>({
-  ContactData: "",
-  setContactData: () => {},
-  TradeMarkData: "",
-  setTradeMarkData: () => {},
-  Slides: [],
-  setSlides: () => {},
-  SocialMedia: [],
-  setSocialMedia: () => {},
-  Videos: [],
-  setVideos: () => {},
-  Posts: [],
-  setPosts: () => {},
-  Accounts: [],
-  setAccounts: () => {},
-  UpdateId: "",
-  setUpdateId: () => {},
-  Products: [],
-  setProducts: () => {},
-  productTypes: [],
-  setProductType: () => {},
-  Branches: [],
-  setBranches: () => {},
-  Orders: [],
-  setOrders: () => {},
-  HeaderAdmin: "",
-  setHeaderAdmin: () => {},
-  Introduction: "",
-  setIntroduction: () => {},
-
-  Sale: {},
-  setSale: () => {},
-  Notification: [],
-  setNotification: () => {},
-  CartItems: [],
-  setCartItems: () => {},
   currentUser: null,
   setCurrentUser: () => {},
+  Accounts: null,
+  setAccounts: () => {},
+  Products: null,
+  setProducts: () => {},
+  Posts: null,
+  setPosts: () => {},
+  Config: null,
+  setConfig: () => {},
+  CartItems: null,
+  setCartItems: () => {},
+  Bill: null,
+  setBill: () => {},
 });
 
 export const DataProviders: React.FC<Props> = ({ children }) => {
-  //Website
-  const [HeaderAdmin, setHeaderAdmin] = useState("");
-  const [ContactData, setContactData] = useState("");
-  const [TradeMarkData, setTradeMarkData] = useState("");
-  const [Slides, setSlides] = useState([]);
-  const [SocialMedia, setSocialMedia] = useState("");
-  const [Videos, setVideos] = useState([]);
-  const [Posts, setPosts] = useState([]);
-  const [Accounts, setAccounts] = useState<any>([]);
-
-  //Cart
-  const [UpdateId, setUpdateId] = useState("");
-
-  //Services
-  const [Products, setProducts] = useState([]);
-  const [productTypes, setProductType] = useState([]);
-  const [Branches, setBranches] = useState([]);
-  const [Orders, setOrders] = useState([]);
-  const [Introduction, setIntroduction] = useState({});
-  const [Sale, setSale] = useState({});
-  const [Notification, setNotification] = useState([]);
-  const [CartItems, setCartItems] = useState([]);
-  //custom
   const [currentUser, setCurrentUser] = useState<any>(null);
-
+  const [Accounts, setAccounts] = useState<any>();
+  const [Products, setProducts] = useState<any>();
+  const [Posts, setPosts] = useState<any>();
+  const [Config, setConfig] = useState<any>();
+  const [CartItems, setCartItems] = useState<any>([]);
+  const [Bill, setBill] = useState<any>([]);
   return (
     <DataContext.Provider
       value={{
-        currentUser,
-        setCurrentUser,
         CartItems,
         setCartItems,
-        Notification,
-        setNotification,
-        Sale,
-        setSale,
-        Introduction,
-        setIntroduction,
-        HeaderAdmin,
-        setHeaderAdmin,
-
-        Orders,
-        setOrders,
-        Branches,
-        setBranches,
-        UpdateId,
-        setUpdateId,
+        Bill,
+        setBill,
+        Config,
+        setConfig,
         Products,
         setProducts,
-        productTypes,
-        setProductType,
-        Accounts,
-        setAccounts,
         Posts,
         setPosts,
-        Videos,
-        setVideos,
-        SocialMedia,
-        setSocialMedia,
-        Slides,
-        setSlides,
-        TradeMarkData,
-        setTradeMarkData,
-        ContactData,
-        setContactData,
+        Accounts,
+        setAccounts,
+        currentUser,
+        setCurrentUser,
       }}
     >
       {children}

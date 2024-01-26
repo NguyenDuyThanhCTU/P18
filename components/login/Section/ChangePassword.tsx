@@ -5,8 +5,9 @@ import { BiHide, BiShow } from "react-icons/bi";
 import { notification } from "antd";
 import { useStateProvider } from "@context/StateProvider";
 import { useData } from "@context/DataProviders";
-import { updateDocument } from "@config/Services/Firebase/FireStoreDB";
 import Link from "next/link";
+import { updateOne } from "@lib/api";
+import { useRouter } from "next/navigation";
 
 interface ChangePasswordProps {
   setIsChangePasswords: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,9 +21,9 @@ export const ChangePassword: React.FC<ChangePasswordProps> = ({
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const { Accounts } = useData();
-  const { setIsRefetch } = useStateProvider();
 
   const HandleSubmit = async () => {
+    const router = useRouter();
     if (!currentPassword || !newPassword) {
       setErrorMessage(true);
     } else {
@@ -30,12 +31,12 @@ export const ChangePassword: React.FC<ChangePasswordProps> = ({
         const Data = {
           password: newPassword,
         };
-        updateDocument("accounts", Accounts.id, Data).then(() => {
+        updateOne("accounts", Accounts.id, Data).then(() => {
           notification["success"]({
             message: "Đổi mật khẩu thành công !",
             description: `Mật khẩu của bạn đã được cập nhật !`,
           });
-          setIsRefetch("CRUD accounts");
+          router.refresh();
           setTimeout(() => {
             setIsChangePasswords(false);
           }, 1000);
