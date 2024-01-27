@@ -1,10 +1,12 @@
 import InputForm from "@components/items/server-items/InputForm";
 import { useData } from "@context/DataProviders";
 import { useStateProvider } from "@context/StateProvider";
-import { insertOne } from "@lib/api";
+import { insertOne, updateOne } from "@lib/api";
+import { notification } from "antd";
 import { useRouter } from "next/navigation";
 import React from "react";
-const FormSlide = ({ setIsOpen }: any) => {
+
+const SlideHandle = ({ setIsOpen, setHandle, Type }: any) => {
   const { Products, Posts } = useData();
   const { FormData } = useStateProvider();
   const RadioItem = [
@@ -18,12 +20,27 @@ const FormSlide = ({ setIsOpen }: any) => {
     },
   ];
   const router = useRouter();
-
+  console.log(FormData);
   const HandleSubmit = async () => {
-    await insertOne("Slides", FormData).then(() => {
-      router.refresh();
-      setIsOpen(false);
-    });
+    if (!FormData?.type || !FormData?.url || !FormData?.image) {
+      notification.error({
+        message: "Vui lòng điền đầy đủ thông tin",
+      });
+    } else {
+      if (Type === "update") {
+        await updateOne("Slides", FormData.id, FormData).then(() => {
+          router.refresh();
+          setIsOpen(false);
+          setHandle(false);
+        });
+      } else {
+        await insertOne("Slides", FormData).then(() => {
+          router.refresh();
+          setIsOpen(false);
+          setHandle(false);
+        });
+      }
+    }
   };
   return (
     <div>
@@ -60,31 +77,18 @@ const FormSlide = ({ setIsOpen }: any) => {
         )}
       </form>
       <>
-        {!FormData?.type || !FormData?.url || !FormData?.image ? (
-          <>
-            {" "}
-            <div className="flex w-full justify-end mt-5 pt-3 border-t border-black">
-              <div className="bg-red-500 hover:bg-red-700 duration-300 cursor-not-allowed text-white p-2 rounded-md">
-                Cập nhật
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            {" "}
-            <div className="flex w-full justify-end mt-5 pt-3 border-t border-black">
-              <div
-                className="bg-red-500 hover:bg-red-700 duration-300 cursor-pointer text-white p-2 rounded-md"
-                onClick={() => HandleSubmit()}
-              >
-                Cập nhật
-              </div>
-            </div>
-          </>
-        )}
+        {" "}
+        <div className="flex w-full justify-end mt-5 pt-3 border-t border-black">
+          <div
+            className="bg-red-500 hover:bg-red-700 duration-300 cursor-pointer text-white p-2 rounded-md"
+            onClick={() => HandleSubmit()}
+          >
+            {Type === "update" ? "Cập nhật" : "Thêm mới"}
+          </div>
+        </div>
       </>
     </div>
   );
 };
 
-export default FormSlide;
+export default SlideHandle;

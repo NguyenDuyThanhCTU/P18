@@ -4,6 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { uploadImage } from "./Handle";
 import { useStateProvider } from "@context/StateProvider";
 import { notification } from "antd";
+import Image from "next/image";
 
 interface ImageUploaderProps {
   setForm: (value: string) => void;
@@ -37,10 +38,10 @@ const ImageUploader = ({
   };
 
   useEffect(() => {
-    if (Form[Field] === undefined) {
+    if (Form === undefined) {
       setUploadedFile(null);
     }
-  }, [Form[Field]]);
+  }, [Form]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -53,28 +54,26 @@ const ImageUploader = ({
         }`}
       >
         <input {...getInputProps()} />
-        {uploadedFile ? (
-          <img
+        {Form?.image !== undefined ? (
+          <Image
+            width={100}
+            height={100}
+            src={Form[Field]}
+            alt="Uploaded"
+            className="w-full h-auto mb-4 rounded-lg"
+          />
+        ) : uploadedFile ? (
+          <Image
+            width={100}
             src={URL.createObjectURL(uploadedFile)}
             alt="Uploaded"
             className="w-full h-auto mb-4 rounded-lg"
           />
         ) : (
-          <>
-            {" "}
-            {PlaceHolder ? (
-              <img
-                src={PlaceHolder}
-                alt="Uploaded"
-                className="w-full h-auto mb-4 rounded-lg"
-              />
-            ) : (
-              <div>
-                <FaCloudUploadAlt className="mx-auto text-4xl mb-2 text-gray-600" />
-                <p>Drag & Drop or Click to Upload</p>
-              </div>
-            )}
-          </>
+          <div>
+            <FaCloudUploadAlt className="mx-auto text-4xl mb-2 text-gray-600" />
+            <p>Drag & Drop or Click to Upload</p>
+          </div>
         )}
       </div>
     </div>

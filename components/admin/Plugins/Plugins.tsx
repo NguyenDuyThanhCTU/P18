@@ -182,7 +182,7 @@ const Plugins = ({ Data }: any) => {
         afterClose={() => setFormData({})}
         onCancel={() => setIsOpenUpdateModel(false)}
       >
-        <Update OpenUpdate={setIsOpenUpdateModel} Data={SelectedProductData} />
+        <Update OpenUpdate={setIsOpenUpdateModel} />
       </Modal>
     </div>
   );

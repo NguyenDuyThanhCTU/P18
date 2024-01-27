@@ -194,8 +194,8 @@ const ListProduct = ({ Category }: any) => {
                   <div className="flex justify-center items-center text-red-500">
                     {item.view}
                   </div>
-                  <div className="flex justify-center items-center">
-                    {item.price}
+                  <div className="flex justify-center items-center text-red-500">
+                    {item.price} <sup>VNĐ</sup>
                   </div>
 
                   <div className="flex justify-center items-center">{Date}</div>

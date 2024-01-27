@@ -4,15 +4,17 @@ import { convertDate } from "@components/items/server-items/Handle";
 import Search from "@components/items/server-items/Search";
 import { Modal } from "antd";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PiCardsLight } from "react-icons/pi";
 import { useStateProvider } from "@context/StateProvider";
-import FormSlide from "./FormSlide";
 import { WebsiteUrl } from "@assets/item";
 import slugify from "slugify";
 import { useRouter } from "next/navigation";
+import SlideHandle from "./SlideHandle";
+import { deleteOne } from "@lib/api";
 
 interface SlideProps {
+  id: string;
   image: string;
   url: string;
   type: string;
@@ -22,8 +24,31 @@ interface SlideProps {
 
 const Slide = ({ Data }: any) => {
   const router = useRouter();
-  const [isOpenAddTypeModal, setIsOpenAddTypeModal] = React.useState(false);
+  const [isOpenAddTypeModal, setIsOpenAddTypeModal] = useState(false);
+  const [isOpenUpdateModel, setIsOpenUpdateModel] = useState(false);
+  const [isOpenHandleModel, setIsOpenHandleModel] = useState(false);
+  const [Selected, setSelected] = useState<any>(null);
   const { setFormData } = useStateProvider();
+
+  const HandleSelected = (id: string) => {
+    const sort = Data?.filter((item: any) => item.id === id);
+    if (sort) {
+      setSelected(sort[0]);
+      setIsOpenHandleModel(true);
+    }
+  };
+
+  const HandleDelete = async (id: string) => {
+    deleteOne("Slides", id).then(() => {
+      setIsOpenHandleModel(false);
+      router.refresh();
+    });
+  };
+
+  useEffect(() => {
+    setFormData(Selected);
+  }, [isOpenHandleModel]);
+
   return (
     <div className="w-full  p:px-0 d:px-10 font-light gap-10 min-h-screen  bg-white py-10">
       <div className="flex items-center gap-5 d:flex-row p:flex-col">
@@ -47,7 +72,7 @@ const Slide = ({ Data }: any) => {
               <div className="flex items-center gap-4 text-[14px] mr-20">
                 <div className="flex items-center gap-1">
                   <PiCardsLight />
-                  <p>{Data?.length} đối tác</p>
+                  <p>{Data?.length} slide</p>
                 </div>
               </div>
             </div>
@@ -82,7 +107,7 @@ const Slide = ({ Data }: any) => {
                       <div
                         className="grid grid-cols-7   text-center border-b py-3 cursor-pointer hover:bg-slate-200 items-center "
                         key={idx}
-                        //   onClick={() => HandleSelectProduct(item.id)}
+                        onClick={() => HandleSelected(item.id)}
                       >
                         <div className="">{idx + 1}</div>
                         <div className="col-span-2 text-start">{item.type}</div>
@@ -175,10 +200,58 @@ const Slide = ({ Data }: any) => {
           destroyOnClose={true}
           afterClose={() => setFormData({})}
         >
-          <FormSlide setIsOpen={setIsOpenAddTypeModal} />
+          <SlideHandle setIsOpen={setIsOpenAddTypeModal} />
         </Modal>
       </>
-      <></>
+      <>
+        <Modal
+          footer={null}
+          title={`Cập nhật slide`}
+          open={isOpenHandleModel}
+          width={700}
+          onCancel={() => setIsOpenHandleModel(false)}
+          destroyOnClose={true}
+          afterClose={() => setFormData({})}
+        >
+          <>
+            <div className="border rounded-xl bg-slate-100">
+              <div className="p-5 grid grid-cols-2  justify-center gap-3">
+                <CRUDButton
+                  Clicked={() => {
+                    setIsOpenUpdateModel(true);
+                  }}
+                  Label="Chỉnh Sửa"
+                  value="mục slide"
+                  Style="hover:bg-blue-900 bg-blue-700"
+                />
+                <CRUDButton
+                  Clicked={() => HandleDelete(Selected?.id)}
+                  Label="Xóa"
+                  value="mục slide"
+                  Style="hover:bg-red-900 bg-red-700"
+                />
+              </div>
+            </div>
+          </>
+        </Modal>
+      </>
+      <>
+        <Modal
+          title="Chỉnh sửa"
+          footer={null}
+          open={isOpenUpdateModel}
+          width={1000}
+          destroyOnClose={true}
+          afterClose={() => setFormData({})}
+          onCancel={() => setIsOpenUpdateModel(false)}
+        >
+          <SlideHandle
+            setIsOpen={setIsOpenUpdateModel}
+            setHandle={setIsOpenHandleModel}
+            Type="update"
+          />
+        </Modal>
+      </>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import AdminPage from "@components/admin/AdminPage";
 import SocialMedia from "@components/admin/Comunity/SocialMedia/SocialMedia";
 import Slide from "@components/admin/Comunity/Slide/Slide";
 import Plugins from "@components/admin/Plugins/Plugins";
+import Collection from "@components/admin/Comunity/Collection/Collection";
 
 export const metadata: Metadata = {
   title: "Công ty ứng dụng truyền thông ADS",
@@ -30,7 +31,6 @@ const AdminHomePage = async ({
   switch (searchValue) {
     case undefined:
       componentToRender = <AdminPage />;
-
       break;
     case "cau-hinh":
       const ConfigData = await find("Config");
@@ -76,6 +76,10 @@ const AdminHomePage = async ({
     case "doi-tac":
       const PartnerData = await find("Partner");
       componentToRender = <Plugins Data={PartnerData} />;
+      break;
+    case "bo-suu-tap":
+      const CollectionData = await find("Collection");
+      componentToRender = <Collection Data={CollectionData} />;
       break;
 
     default:

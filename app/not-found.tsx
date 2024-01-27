@@ -1,8 +1,10 @@
+import { find } from "@lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function NotFound() {
+export default async function NotFound() {
+  const Data = await find("Config");
   return (
     <div>
       <div className="py-10 font-LexendDeca font-extralight">

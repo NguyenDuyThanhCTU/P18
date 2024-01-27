@@ -77,8 +77,8 @@ import { GoGitBranch } from "react-icons/go";
 interface IconMappingType {
   [key: string]: IconType;
 }
-export const WebsiteUrl = "https://xedapdiencantho.com";
-export const DB_URL = "xedapdiencantho-b082a";
+export const WebsiteUrl = "https://vstarcamvietnam.vn";
+export const DB_URL = "vstartcamvietnam";
 
 export const IconMapping: IconMappingType = {
   IoFlashOutline: IoFlashOutline,
@@ -286,15 +286,15 @@ export const AdminPageHeaderItems = [
         icon: "BiSlideshow",
       },
       {
-        label: "Hình Ảnh",
-        value: "hinh-anh",
+        label: "Bộ sưu tập",
+        value: "bo-suu-tap",
         icon: "IoImagesOutline",
       },
-      {
-        label: "Video",
-        value: "video",
-        icon: "MdOndemandVideo",
-      },
+      // {
+      //   label: "Video",
+      //   value: "video",
+      //   icon: "MdOndemandVideo",
+      // },
     ],
   },
   {
@@ -375,32 +375,33 @@ export const AdminPageHeaderItems = [
 
 export const HeaderItems = [
   {
-    label: "Trang Chủ",
-    value: "",
-  },
-  {
-    label: "Giới Thiệu",
+    label: "Giới thiệu",
     value: "gioi-thieu",
   },
+
   {
-    label: "Xe Đạp Trợ Lực Điện",
-    value: "xe-dap-tro-luc-dien",
+    label: "Camera Trọn bộ",
+    value: "san-pham/camera-tron-bo",
   },
   {
-    label: "Xe Đạp Điện",
-    value: "xe-dap-dien",
+    label: "Phụ Kiện Camera",
+    value: "san-pham/phu-kien-camera",
   },
   {
-    label: "Sự Kiện",
+    label: "Thiết Bị Thông Minh",
+    value: "san-pham/thiet-bi-thong-minh",
+  },
+  {
+    label: "Dự Án",
+    value: "du-an",
+  },
+  {
+    label: "Tin tức",
     value: "tin-tuc",
   },
   {
-    label: "Liên Hệ",
+    label: "Liên hệ",
     value: "lien-he",
-  },
-  {
-    label: "Tiện Ích",
-    value: "dang-ky-lai-thu",
   },
 ];
 
@@ -435,12 +436,32 @@ export const ToolsTipsSocialMediaItems = [
 
 export const ProductTypeItems = [
   {
-    label: "Xe đạp điện",
-    value: "Xe đạp điện",
+    label: "Wifi Camera",
+    value: "wifi-camera",
   },
   {
-    label: "Xe đạp trợ lực điện",
-    value: "Xe đạp trợ lực điện",
+    label: "Dual lens Camera",
+    value: "dual-lens-camera",
+  },
+  {
+    label: "4G Camera",
+    value: "4g-camera",
+  },
+  {
+    label: "Battery Camera",
+    value: "battery-camera",
+  },
+  {
+    label: "Camera Trọn bộ",
+    value: "camera-tron-bo",
+  },
+  {
+    label: "Phụ Kiện Camera",
+    value: "phu-kien-camera",
+  },
+  {
+    label: "Thiết Bị Thông Minh",
+    value: "thiet-bi-thong-minh",
   },
 ];
 
@@ -449,14 +470,7 @@ export const PostsTypeItems = [
     label: "Tin tức",
     value: "Tin tức",
   },
-  {
-    label: "Dịch Vụ",
-    value: "Dịch Vụ",
-  },
-  {
-    label: "Bảng Giá",
-    value: "Bảng Giá",
-  },
+
   {
     label: "Chính sách",
     value: "Chính sách",

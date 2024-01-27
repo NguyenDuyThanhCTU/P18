@@ -48,7 +48,7 @@ const Posts = ({ Category }: ProductCategoryProps) => {
   const { Posts } = useData();
   const router = useRouter();
   useEffect(() => {
-    const sort = Posts?.filter((item: any) => item.level0 !== "Introductory");
+    const sort = Posts?.filter((item: any) => item.id !== "Introductory");
     if (sort) {
       const Posts = sort.filter((item: any) => item.level0 !== "chinh-sach");
       const Policy = sort.filter((item: any) => item.level0 === "chinh-sach");

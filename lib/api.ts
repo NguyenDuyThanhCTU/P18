@@ -17,6 +17,7 @@ import { db } from "@config/Firebase";
 import { convertDocumentData, convertFieldValue } from "./Handle";
 import { DB_URL } from "@assets/item";
 import { notification } from "antd";
+import { convertDate } from "@components/items/server-items/Handle";
 
 export const insertOne = async (Collection: string, data: any) => {
   data.createdAt = serverTimestamp();
@@ -72,8 +73,10 @@ export const findById = async (Collection: string, Id: any) => {
     }
 
     const data = await response.json();
+    const formattedDoc = convertDocumentData(data.fields);
+    formattedDoc.date = convertDate(formattedDoc.createdAt);
 
-    return convertDocumentData(data.fields);
+    return formattedDoc;
   } catch (error) {
     console.error("Lỗi khi lấy dữ liệu:", error);
     // throw new Error("Failed to fetch data.");
@@ -104,6 +107,7 @@ export async function find(CollectionName: string) {
         }
       }
 
+      formattedDoc.date = convertDate(formattedDoc.createdAt);
       return formattedDoc;
     });
 
@@ -172,12 +176,19 @@ export const updateOne = async (
       message: "Cập nhật thành công",
     });
   } catch (error) {
-    console.error("Lỗi khi cập nhật:", error);
-    notification.error({
-      message: "Cập nhật thất bại",
-      description: `Mã lỗi: ${error}`,
-    });
-    throw error; // Re-throw lỗi để cho phép nó được xử lý bởi các khối catch ở nơi gọi hàm
+    try {
+      await insertAndCustomizeId(collectionName, newData, id);
+      notification.success({
+        message: "Thành công",
+      });
+    } catch (error) {
+      notification.error({
+        message: "Cập nhật thất bại",
+        description: `Mã lỗi: ${error}`,
+      });
+    }
+
+    throw error;
   }
 };
 

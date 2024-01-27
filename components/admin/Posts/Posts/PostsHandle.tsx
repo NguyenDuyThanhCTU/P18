@@ -59,7 +59,9 @@ const PostsHandle = ({
     });
     setFormData({
       ...FormData,
-      url: `${headUrl}?poid=${100000000001 + postsLength}`,
+      url: `${headUrl}?poid=${
+        postsLength ? 100000000000 + postsLength : 100000000000
+      }`,
     });
   }, [FormData?.title]);
 
@@ -85,7 +87,7 @@ const PostsHandle = ({
       await insertAndCustomizeId(
         "Posts",
         Data,
-        `${100000000001 + postsLength}`
+        `${postsLength ? 100000000000 + postsLength : 100000000000}`
       ).then(() => {
         setIsOpen(false);
         router.refresh();
@@ -119,6 +121,7 @@ const PostsHandle = ({
 
     router.refresh();
   };
+
   const HandleChange = () => {
     setFormData(Data);
     setChange(true);

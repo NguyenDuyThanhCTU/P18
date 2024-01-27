@@ -6,29 +6,25 @@ import { insertAndCustomizeId, insertOne, updateOne } from "@lib/api";
 import { Modal } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const PostIntroductory = ({ Data }: any) => {
-  const [isOpenAddTypeModal, setIsOpenAddTypeModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const { setFormData, FormData } = useStateProvider();
   const markup = { __html: Data?.content };
   const router = useRouter();
 
   const HandleSubmit = () => {
     setFormData({ ...FormData, level0: "Introductory" });
-    if (Data?.createdAt !== undefined) {
-      updateOne("Posts", "introductory", FormData).then(() => {
-        setIsOpenAddTypeModal(false);
-        router.refresh();
-      });
-    } else {
-      insertAndCustomizeId("Posts", FormData, "introductory").then(() => {
-        setIsOpenAddTypeModal(false);
-        router.refresh;
-      });
-    }
-    router.refresh();
+    updateOne("Posts", "introductory", FormData).then(() => {
+      setIsOpenModal(false);
+      router.refresh();
+    });
   };
+
+  useEffect(() => {
+    setFormData(Data);
+  }, [isOpenModal]);
 
   return (
     <div className="w-full px-2 font-light gap-10 min-h-screen  bg-white py-10 ">
@@ -41,7 +37,7 @@ const PostIntroductory = ({ Data }: any) => {
         </div>
         <div>
           <CRUDButton
-            Clicked={setIsOpenAddTypeModal}
+            Clicked={setIsOpenModal}
             Label="Chỉnh Sửa"
             value="bài giới thiệu"
             Style="hover:bg-cyan-900 bg-cyan-700"
@@ -102,9 +98,9 @@ const PostIntroductory = ({ Data }: any) => {
         <Modal
           footer={null}
           title="Chỉnh sửa bài giới thiệu"
-          open={isOpenAddTypeModal}
+          open={isOpenModal}
           width={1200}
-          onCancel={() => setIsOpenAddTypeModal(false)}
+          onCancel={() => setIsOpenModal(false)}
           afterClose={() => setFormData({})}
           destroyOnClose={true}
         >

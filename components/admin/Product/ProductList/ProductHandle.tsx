@@ -63,7 +63,9 @@ const ProductHandle = ({
     });
     setFormData({
       ...FormData,
-      url: `${headUrl}?poid=${100000000001 + productLength}`,
+      url: `${headUrl}?poid=${
+        productLength ? 100000000000 + productLength : 100000000000
+      }`,
     });
   }, [FormData.title]);
 
@@ -77,7 +79,7 @@ const ProductHandle = ({
     await insertAndCustomizeId(
       "Products",
       Data,
-      `${100000000001 + productLength}`
+      `${productLength ? 100000000000 + productLength : 100000000000}`
     ).then(() => {
       setIsOpen(false);
       router.refresh();
@@ -363,7 +365,7 @@ const ProductHandle = ({
               label: "Thông tin khác",
               children: (
                 <form className="flex flex-col gap-3">
-                  <div>
+                  {/* <div>
                     <p>Bảng màu:</p>
                     <div className="border rounded-lg mt-3 min-h-20 border-black">
                       <div className="p-2 flex flex-wrap gap-5">
@@ -428,7 +430,7 @@ const ProductHandle = ({
                         <MdUpload />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </form>
               ),
             },

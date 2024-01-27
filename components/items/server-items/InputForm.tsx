@@ -104,7 +104,7 @@ const InputForm = ({
               <div className="px-4 py-1 border  bg-white rounded-lg w-full col-span-6">
                 <select
                   className=" outline-none w-full bg-white"
-                  value={field ? FormData[field] : FormData}
+                  value={FormData === undefined ? "" : FormData[field]}
                   onChange={(e) =>
                     setFormData({ ...FormData, [field]: e.target.value })
                   }
@@ -148,7 +148,7 @@ const InputForm = ({
                 type="text"
                 placeholder={PlaceHolder ? PlaceHolder : ""}
                 className=" outline-none w-full"
-                value={FormData[field] === undefined ? "" : FormData[field]}
+                value={FormData === undefined ? "" : FormData[field]}
                 onChange={(e) =>
                   setFormData({ ...FormData, [field]: e.target.value })
                 }
@@ -280,7 +280,9 @@ const InputForm = ({
                         type="radio"
                         id={`radio_${idx}`}
                         value={item.value}
-                        checked={FormData[field] === item.value}
+                        checked={
+                          FormData ? FormData[field] === item.value : false
+                        }
                         onChange={(e) =>
                           setFormData({
                             ...FormData,
