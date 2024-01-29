@@ -22,7 +22,6 @@ const CollectionHandle = ({ setIsOpen }: any) => {
   ];
   const router = useRouter();
   const HandleSubmit = async (Type: string) => {
-    console.log(FormData);
     if (Type === "hinh-anh") {
       if (!FormData?.image) {
         notification.error({

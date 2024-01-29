@@ -297,78 +297,78 @@ export const AdminPageHeaderItems = [
       // },
     ],
   },
-  {
-    label: "Tài Khoản",
-    value: "tai-khoan",
-    icon: "MdManageAccounts",
-    children: [
-      // {
-      //   label: "Thông Tin Tài Khoản",
-      //   value: "thong-tin-tai-khoan",
-      //   icon: "AiOutlineProfile",
-      // },
-      // {
-      //   label: "Danh Sách Tài Khoản",
-      //   value: "danh-sach-tai-khoan",
-      //   icon: "BiSolidUserAccount",
-      // },
-      // {
-      //   label: "Phân Quyền",
-      //   value: "phan-quyen",
-      //   icon: "AiOutlineNodeCollapse",
-      // },
-      // {
-      //   label: "Lịch Sử Hoạt Động",
-      //   value: "lich-su-hoat-dong",
-      //   icon: "MdOutlineHistory",
-      // },
-    ],
-  },
-  {
-    label: "Báo Cáo",
-    value: "bao-cao",
-    icon: "TbReport",
-    children: [
-      // {
-      //   label: "Lượt Truy Cập",
-      //   value: "luot-truy-cap",
-      //   icon: "BiLoader",
-      // },
-      // {
-      //   label: "Phản Hồi của Khách Hàng",
-      //   value: "Phan-hoi-cua-khach-hang",
-      //   icon: "BiPencil",
-      // },
-      // {
-      //   label: "Đơn Hàng",
-      //   value: "don-hang",
-      //   icon: "BiCube",
-      // },
-      // {
-      //   label: "Sản Phẩm Xem Nhiều",
-      //   value: "san-pham-xem-nhieu",
-      //   icon: "BiHappy",
-      // },
-    ],
-  },
-  {
-    label: "Tiện Ích",
-    value: "tien-ich",
-    icon: "BiHive",
+  // {
+  //   label: "Tài Khoản",
+  //   value: "thong-tin-tai-khoan",
+  //   icon: "MdManageAccounts",
+  //   children: [
+  //     {
+  //       label: "Thông Tin Tài Khoản",
+  //       value: "thong-tin-tai-khoan",
+  //       icon: "AiOutlineProfile",
+  //     },
+  //     {
+  //       label: "Quản Lý Tài Khoản",
+  //       value: "quan-ly-tai-khoan",
+  //       icon: "BiSolidUserAccount",
+  //     },
+  //     // {
+  //     //   label: "Phân Quyền",
+  //     //   value: "phan-quyen",
+  //     //   icon: "AiOutlineNodeCollapse",
+  //     // },
+  //     // {
+  //     //   label: "Lịch Sử Hoạt Động",
+  //     //   value: "lich-su-hoat-dong",
+  //     //   icon: "MdOutlineHistory",
+  //     // },
+  //   ],
+  // },
+  // {
+  //   label: "Báo Cáo",
+  //   value: "bao-cao",
+  //   icon: "TbReport",
+  //   children: [
+  //     // {
+  //     //   label: "Lượt Truy Cập",
+  //     //   value: "luot-truy-cap",
+  //     //   icon: "BiLoader",
+  //     // },
+  //     // {
+  //     //   label: "Phản Hồi của Khách Hàng",
+  //     //   value: "Phan-hoi-cua-khach-hang",
+  //     //   icon: "BiPencil",
+  //     // },
+  //     // {
+  //     //   label: "Đơn Hàng",
+  //     //   value: "don-hang",
+  //     //   icon: "BiCube",
+  //     // },
+  //     // {
+  //     //   label: "Sản Phẩm Xem Nhiều",
+  //     //   value: "san-pham-xem-nhieu",
+  //     //   icon: "BiHappy",
+  //     // },
+  //   ],
+  // },
+  // {
+  //   label: "Tiện Ích",
+  //   value: "tien-ich",
+  //   icon: "BiHive",
 
-    children: [
-      {
-        label: "Đối tác",
-        value: "doi-tac",
-        icon: "LuGitCompare",
-      },
-      {
-        label: "Chi Nhánh",
-        value: "chi-nhanh",
-        icon: "GoGitBranch",
-      },
-    ],
-  },
+  //   children: [
+  //     {
+  //       label: "Đối tác",
+  //       value: "doi-tac",
+  //       icon: "LuGitCompare",
+  //     },
+  //     {
+  //       label: "Chi Nhánh",
+  //       value: "chi-nhanh",
+  //       icon: "GoGitBranch",
+  //     },
+  //   ],
+  // },
 ];
 
 /*<---------------------------------------------------------- Custom System ----------------------------------------------------------> */

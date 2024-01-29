@@ -2,7 +2,7 @@
 import { useData } from "@context/DataProviders";
 import React, { useEffect } from "react";
 
-const StorageProvider = ({ Products, Posts, Config }: any) => {
+const StorageProvider = ({ Products, PostsData, Config }: any) => {
   const { setProducts, setPosts, setConfig } = useData();
 
   useEffect(() => {
@@ -10,8 +10,8 @@ const StorageProvider = ({ Products, Posts, Config }: any) => {
   }, [Products]);
 
   useEffect(() => {
-    setPosts(Posts);
-  }, [Posts]);
+    setPosts(PostsData);
+  }, [PostsData]);
 
   useEffect(() => {
     setConfig(Config);

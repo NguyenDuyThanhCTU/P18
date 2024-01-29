@@ -20,7 +20,6 @@ const SlideHandle = ({ setIsOpen, setHandle, Type }: any) => {
     },
   ];
   const router = useRouter();
-  console.log(FormData);
   const HandleSubmit = async () => {
     if (!FormData?.type || !FormData?.url || !FormData?.image) {
       notification.error({

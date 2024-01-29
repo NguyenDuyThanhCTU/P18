@@ -23,7 +23,7 @@ export default async function RootLayout({
             <AuthProviders>
               <StorageProvider
                 Products={Products}
-                Posts={Posts}
+                PostsData={Posts}
                 Config={Config}
               />
 

@@ -88,7 +88,6 @@ const Posts = ({ Category }: ProductCategoryProps) => {
       router.refresh();
     });
   };
-  // console.log(SelectedPostData);
   return (
     <div className="w-full p:px-0 d:px-10 font-light gap-10 min-h-screen  bg-white py-10">
       <div className="flex items-center gap-5 d:flex-row p:flex-col">

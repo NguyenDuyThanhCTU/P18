@@ -32,7 +32,6 @@ const Collection = ({ Data }: any) => {
   }, [Data]);
 
   const HandleDelete = async (id: string) => {
-    console.log(id);
     deleteOne("Collections", id).then(() => {
       setIsOpenHandleModel(false);
       router.refresh();
